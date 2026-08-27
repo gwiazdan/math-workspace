@@ -1,4 +1,4 @@
-
+#import "@preview/simple-plot:1.1.0": area-between, fill-area, plot
 #import "@preview/fletcher:0.5.8": diagram, edge, node
 #import "@preview/euler-math:0.1.0": *
 // Choose the language
