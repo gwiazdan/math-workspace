@@ -349,7 +349,6 @@
           align: center + horizon,
           ..range(4, -5, step: -1)
             .map(y => range(-4, 5).map(x => {
-              // Różnica x - y jest podzielna przez 3
               let filled = calc.rem(x - y, 3) == 0
               box(
                 width: 5pt,
@@ -366,3 +365,429 @@
   ]
 ]
 #solution[This relation is $x equiv y pmod(3)$.]
+
+== Properties of Relations
+
+#exercise[Consider the relation $R={(a,a),(b,b),(c,c),(d,d),(a,b),(b,a)$ on set $A={a,b,c,d}$. Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why.]
+
+#solution[
+  1. $R$ is reflexive, since every element of set $A$ is in relation with itself: $(a,a),(b,b),(c,c),(d,d)$.
+  2. $R$ is symmetric, since for every $(a,b) in R$, $(b,a) in R$ as well.
+    + $(a,a),(b,b),(c,c),(d,d)$ are symmetric to itself.
+    + $(a,b)$ is symmetric to $(b,a)$.
+  3. $R$ is transitive, since for every two tuples such as $(a,b) in R$ and $(b,c) in R$, it is implied that $(a,c) in R$ as well.
+    + There are only three such pairs of tuples: $(a,a), (a,b)$; $(b,b), (b,a)$; $(a,b), (b,a)$ and $(b,a), (a,b)$. You can see that the implication is true for this relation and hence, the relation is transitive.
+]
+
+#exercise[Consider the relation $R={(a,b),(a,c),(c,c),(b,b),(c,b),(b,c)$ on set $A={a,b,c}$. Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why.]
+
+#solution[
+  1. Not reflexive, since $(a,a) in.not R$.
+  2. Not symmetric, since $(a,b) in R$ but $(b,a) in.not R$.
+  3. Transitive, since for every two pairs such as $(x,y) in R$ and $(y,z) in R$, there is a third pair $(x,z) in R$.
+]
+
+#exercise[Let $A={a,b,c,d}$. Suppose $R$ is the relation$ R = { & (a,a),(b,b),(c,c),(d,d),(a,b),(b,a),(a,c),(c,a) \
+        & (a,d),(d,a),(b,c),(c,b),(b,d),(d,b),(c,d),(d,c)} $
+
+  Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why.
+]
+
+#solution[
+  1. Reflexive, since for every element $x$ in $A$, $(x,x) in R$.
+  2. Symmetric, since if $(x,y) in R$, then $(y,x) in R$.
+  3. Transitive, since for every two pairs such as $(x,y) in R$ and $(y,z) in R$, there is a third pair $(x,z) in R$.
+
+  Note that $R = A times A$, meaning that this relation is universal, and hence each of this properties does hold.
+]
+
+#exercise[Consider the relation $R={(0,0),(sqrt(2),0),(0,sqrt(2)),(sqrt(2),sqrt(2))}$ on $RR$. Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why.]
+
+#solution[
+  1. Not reflexive, since $A=RR$, while for example $(1,1) in.not R$.
+  2. Symmetric, since $(0,0)$ and $(sqrt(2),sqrt(2))$ are symmetric to itself and $(0,sqrt(2))$ is symmetric to $(sqrt(2),0)$.
+
+  3. Transitive. Observe that $R={0,sqrt(2)} times {0,sqrt(2)}$. If so, then the relation is universal on the subset ${0,sqrt(2)}$, meaning that for all $x,y,z in {0,sqrt(2)}$, $(x,y) in R and (y,z) in R => (x,z) in R$.
+]
+
+#exercise[Consider the relation $R={(x,x): x in ZZ}$ on $ZZ$. Is this reflexive? Symmetric? Transitive? If a property does not hold, say why. What familiar relation is this?]
+#solution[
+  1. *Reflexive:* True by definition of the $R$, as for every $x in A, (x,x) in R$.
+  2. *Symmetric:* Every pair of $R$ is $(x,x)$, where $x in A$. Therefore, if $(x,y) in R$, then $x=y$ and $(y,x) in R$ as well.
+  3. *Transitive:* Similarly, since every pair of $R$ is $(x,x)$, then $(x,y) in R => x=y$ and $(y,z) in R => y=z$, therefore, $x=z$ and $(x,z) in R$.
+
+
+  This familiar relation is equality.
+]
+
+#exercise[There are 16 possible different relations $R$ on the set $A={a,b}$. (A picture for each one will suffice, but don't forget to label the nodes.) Which ones are reflexive? Symmetric? Transitive?]
+
+#solution[
+  1. $R=emptyset$
+  - *Not reflexive*, since $(a,a) in.not R$.
+  - *Symmetric*, since $(x,y) in.not R$ and therefore $(x,y) in R => (y,x) in R$ is vacuously true.
+  - *Transitive*, since $(x,y) in.not R$ and hence, $(x,y)in R and (y,z) in R => (x,z) in R$ is vacuously true.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+    )
+  ]
+  2. $R={(a,b)}$
+  - *Not reflexive*, since $(a,a) in.not R$.
+  - *Not symmetric*, since $(a,b) in R$, but $(b,a in.not R$.
+  - *Transitive*, since $(a,b) in R$, but $(b,z) in.not R$, for some $z in A$, then implication $(x,y) in R and (y,z) in R => (x,z) in R$ is vacously true.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (1, 0), "-|>"),
+    )
+  ]
+  3. $R={(b,a)}$
+  - *Not reflexive*, since $(a,a) in.not R$.
+  - *Not symmetric*, since $(b,a) in R$, but $a,b in.not R$.
+  - *Transitive*, since $(b,a) in R$, but $(a,z) in.not R$, for some $z in A$, then implication $(x,y) in R and (y,z) in R => (x,z) in R$ is vacously true.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((1, 0), (0, 0), "-|>"),
+    )
+  ]
+  4. $R={(a,a)}$
+  - *Not reflexive*, since $(b,b) in.not R$.
+  - *Symmetric*, since only $(a,a) in R$ and it is symmetric to itself.
+  - *Transitive*, since only $(a,a) in R$, then $(x,y) in R => x=a and y=a$ and $(y,z) in R => y=a and z=a$, therefore $(x,z) in R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+    )
+  ]
+  5. $R={(b,b)}$
+  - *Not reflexive*, since $(a,a) in.not R$.
+  - *Symmetric*, since only $(b,b) in R$ and it is symmetric to itself.
+  - *Transitive*, since only $(b,b) in R$, then $(x,y) in R => x=b and y=b$ and $(y,z) in R => y=b and z=b$, hence $(x,z) in R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+  6. $R={(a,b),(b,a)}$
+  - *Not reflexive*, since $(a,a) in.not R$.
+  - *Symmetric*, since $(a,b) in R => (b,a) in R$
+  - *Not transitive*, since $(a,b) in R$ and $(b,a) in R$, but $(a,a) in.not R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+    )
+  ]
+  7. $R={(a,a),(b,b)}$
+  - *Reflexive*, since $(a,a) in R$ and $(b,b) in R$.
+  - *Symmetric*, since $(a,a)$ and $(b,b)$ are symmetric to itself.
+  - *Transitive*, since if $x=a$, then $(x,y) in R => y=a$ and $(y,z) in R => z=a$, thus $(x,z) in R$. Analogously for $x=b$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+    )
+  ]
+  8. $R={(a,a), (a,b)}$
+  - *Not reflexive*, since $(b,b) in.not R$.
+  - *Not Symmetric*, since $(a,b) in R$, but $(b,a) in.not R$
+  - *Transitive*, since $(a,a) in R and (a,a) in R => (a,a) in R$ and $(a,a) in R and (a,b) in R => (a,b) in R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+    )
+  ]
+  9. $R={(a,a), (b,a)}$
+  - *Not reflexive*, since $(b,b) in.not R$.
+  - *Not Symmetric*, since $(b,a) in R$, but $(a,b) in.not R$
+  - *Transitive*, since $(a,a) in R and (a,a) in R => (a,a) in R$ and $(b,a) in R and (a,b) in R => (b,a) in R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+    )
+  ]
+  10. $R={(b,b), (a,b)}$
+  - *Not reflexive*, since $(a,a) in.not R$.
+  - *Not Symmetric*, since $(a,b) in R$, but $(b,a) in.not R$
+  - *Transitive*, since $(b,b) in R and (b,b) in R => (b,b) in R$ and $(a,b) in R and (b,b) in R => (a,b) in R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+  11. $R={(b,b),(b,a)}$
+  - *Not reflexive*, since $(a,a) in.not R$.
+  - *Not Symmetric*, since $(b,a) in R$, but $(a,b) in.not R$
+  - *Transitive*, since $(b,b) in R and (b,b) in R => (b,b) in R$ and $(b,b) in R and (b,a) in R => (b,a) in R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+  12. $R={(a,a),(b,b),(a,b)}$
+  - *Reflexive*, since $(a,a) in R and (b,b) in R$.
+  - *Not Symmetric*, since $(a,b) in R$, but $(b,a) in.not R$
+  - *Transitive*, since $(b,b) in R and (b,b) in R => (b,b) in R$ and $(a,b) in R and (b,b) in R => (a,b) in R$ and $(a,a) in R and (a,a) in R => (a,a) in R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+  13. $R={(a,a),(b,b),(b,a)}$
+  - *Reflexive*, since $(a,a) in R and (b,b) in R$.
+  - *Not Symmetric*, since $(b,a) in R$, but $(a,b) in.not R$
+  - *Transitive*, since $(b,b) in R and (b,b) in R => (b,b) in R$ and $(b,b) in R and (b,a) in R => (b,a) in R$ and $(a,a) in R and (a,a) in R => (a,a) in R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+  14. $R={(a,a),(a,b),(b,a)}$
+  - *Not reflexive*, since $(b,b) in.not R$.
+  - *Symmetric*, since $(a,b) in R => (b,a) in R$.
+  - *Not transitive*, since $(b,a) in R and (a,b) in R$  , but $(b,b) in.not R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+    )
+  ]
+  15. $R={(b,b),(a,b),(b,a)}$
+  - *Not reflexive*, since $(a,a) in.not R$.
+  - *Symmetric*, since $(a,b) in R => (b,a) in R$.
+  - *Not transitive*, since $(a,b) in R and (b,a) in R$  , but $(a,a) in.not R$.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+  16. $R={(a,a),(b,b),(a,b),(b,a)}$
+  - *Reflexive*, since $(a,a) in R and (b,b) in R$.
+  - *Symmetric*, since $(a,b) in R => (b,a) in R$.
+  - *Transitive*, since $(x,y) in R and (y,z) in R => (x,z) in R$. Moreover, relation is universal and is transitive by definition.
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+]
+
+#exercise[Define a relation on $ZZ$ as $x R y$ if $|x-y|<1$. Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why. What familiar relation is this?]
+
+#solution[
+  We shall observe that relation $|x-y|<1$ on $ZZ$ is equivalent to equality relation. To prove this, we shall observe that two consecutive integers $x$ and $x+1$ are not in this relation ($|x+1-x|<1$ is false). If two integers differs by $a in ZZ$, then they are in relation only if $|x+a-x|<1$, hence $|a|<1$. Now, only $a=0$ satisfies this equation, leading to the conclusion that two integers are in relation if they are equal to each other.
+
+  1. *$R$ is reflexive:* Since $|x-x|=0<1$. True.
+  2. *$R$ is symmetric:* If $|x-y|<1$, then $|y-x|=|-(x-y)|=|x-y|<1$.
+  3. $R$ is transitive, since if $x R y$ and $y R z$, then $x=y and y=z => x=z$, thus $x R z$.
+]
+
+#exercise[
+  Define a relation on $ZZ$ by declaring $x R y$ if and only if $x$ and $y$ have the same parity. Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why. What familiar relation is this?
+]
+
+#solution[
+  Two integers $x$ and $y$ have same parity if $x equiv y pmod(2)$. Therefore, $R$ is equivalence relation.
+
+  Since we do not want to take anything as granted, we shall remember that if $x equiv y pmod(2)$, then $2 divides (x-y)$.
+
+  1. $R$ is reflexive, since $2 divides (x-x)$ is true (2 divides 0).
+  2. $R$ is symmetric, since if $2 divides (x-y)$, then $2 divides -(y-x)$ and $2 divides (y-x)$.
+  3. $R$ is transitive, since if $2 divides (x-y)$ and $2 divides (y-z)$, then $x-y = 2k$ and $y-z = 2q$ for some $k,q in ZZ$. Hence, $x-(2q + z) = 2k <=> x-z = 2(k+q) => 2 divides (x-z)$.
+]
+
+#exercise[Suppose $A != emptyset$. Since $emptyset subset.eq A times A$, the $R = emptyset$ is a relation on $A$. Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why.]
+
+#solution[
+  1. $R$ is not reflexive and moreover irreflexive, since $forall_((x,x): x in A) (x,x) in.not R$.
+  2. $R$ is symmetric by vacuous truth. There is no $(x,y) in R$, hence implication is true.
+  3. $R$ is transitive by vacuous truth. There is no $(x,y) in R and (y,z) in R$ and thus, the implication is true.
+]
+
+#exercise[Let $A={a,b,c,d}$ and $R={(a,a),(b,b),(c,c),(d,d)}$. Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why.]
+
+#solution[
+  1. $R$ is reflexive, since $forall_(x in A) (x,x) in R$.
+  2. $R$ is symmetric, since if $(x,y) in R$, then $x=y$ and thus $(y,x) in R$.
+  3. $R$ is transitive, since if $(x,y) in R$ and $(y,z) in R$, then $x=y and y=z$. Therefore, $x=z$ and $(x,z) in R$.
+]
+
+#exercise[Prove that the relation $divides$ (divides) on the set $ZZ$ is reflexive and transitive.]
+
+#solution[
+  Relation is reflexive, since $x = x dot 1$ implies that $x divides x$.
+
+  Let $x divides y$ and $y divides z$ for some $x,y,z in ZZ$. If so, then $y=x k$ and $z = y l$ for some $k,l in ZZ$. Therefore, $z = (x k)l <=> z = x(k l) => x divides z$. Hence, $divides$ is transitive.
+
+  q.e.d
+]
+
+#exercise[Consider the relation $R={(x,y) in RR times RR: x-y in ZZ}$ on $RR$. Prove that his relation is reflexive, symmetric and transitive.]
+
+#solution[
+  1. We shall begin with showing that this relation is reflexive. Since $x-x = 0 in ZZ$ and ${(x,x): x in RR} subset {(x,y) in RR times RR}$, then ${(x,x): x in RR} subset R$ and thus for all $x in A$, $(x,x) in R$.
+
+  2. Next, we shall observe that if $(x,y) in R$, then $x,y in RR$ and $x-y in ZZ$. If $x-y in ZZ$, then $-(y-x) in ZZ$ and $y-x in ZZ$, leading to the conclusion that $(y,x) in R$ as well. Hence, relation is symmetric.
+
+  3. Finally, suppose that $(x,y) in R and (y,z) in R$. If so, then $x,y,z in RR$ and $x-y in ZZ$ and $y-z in ZZ$. Therefore, we can establish that $x-y=k$ and $y-z=l$ for some $k,l in ZZ$. Now, $y=x-k$ and $(x-k)-z = l <=> x-z = k+l => x-z in ZZ$ and thus, $(x,z) in R$. Relation is transitive.
+
+  q.e.d
+]
+
+#exercise[Suppose $R$ is a symmetric and transitive relation on a set $A$, and there is an element $a in A$ for which $a R x$ for every $x in A$. Prove that $R$ is reflexive.]
+
+#solution[
+  If $(a,x) in R$ and $R$ is symmetric, then $(x,a) in R$ as well.
+  Now, since $R$ is transitive and $(x,a) in R and (a,x) in R$, then it implies that $(x,x) in R$ for every $x in A$.
+
+  Hence, $R$ is reflexive.
+
+  q.e.d
+]
+
+#exercise[
+  Prove or disprove: If a relation is symmetric and transitive, then it is also reflexive.
+]
+
+#solution[
+  Suppose $R=emptyset$ and $A!=emptyset$. It is symmetric and transitive, as we proved in previous exercises. However, it is not reflexive. Hence, the initial statement is false.
+]
+
+#exercise[Define a relation $R$ on $ZZ$ by declaring that $x R y$ if and only if $x^2 equiv y^2 pmod(4)$. Prove that $R$ is reflexive, symmetric and transitive.]
+
+#solution[
+  We will use the fact that $x equiv y pmod(4) iff 4 divides (x-y)$.
+
+  Firstly, we shall see that $4 divides 0$ and thus $4 divides (x^2-x^2)$. Therefore $x^2 equiv x^2 pmod(4)$ and $R$ is reflexive.
+
+  Secondly, we shall observe that if $(x,y) in R$, then $4 divides (x^2-y^2) <=> 4 divides -(y^2-x^2) <=> 4 divides y^2-x^2$. Therefore, $(y,x) in R$. Relation is symmetric.
+
+  Lastly, suppose that $(x,y) in R$ and $(y,z) in R$. Therefore, $4 divides (x^2-y^2) and 4 divides (y^2-z^2)$. We can use this fact to state that $x^2-y^2=4k$ and $y^2-z^2=4l$ for some $k,l in ZZ$. Now, $x^2-(4l+z^2)=4k <=> x^2-z^2=4k+4l => 4 divides (x^2-z^2)$. Therefore, $(x,z) in R$ and the relation is transitive.
+
+  q.e.d
+]
+
+#exercise[Modyfing Exercise 1.22 slightly, define a relation $~$ on $ZZ$ as $x ~ y$ if and only if $|x-y|<=1$. Say whether $~$ is reflexive. Is it symmetric? Transitive?]
+
+#solution[
+  $R$ is reflexive, since $x-x=0$ and $|0|<=1$ for every $x in ZZ$.
+
+  Relation $R$ is also symmetric, since if $(x,y) in R$, then $|x-y|<=1$, implying that $|y-x|<=1$ and $(y,x) in R$.
+
+  Lastly, we shall show that $(-1,0) in R and (0,1) in R$, but $(-1,1) in.not R$. Therefore, the relation is not transitive.
+
+
+  q.e.d
+]
+
+#exercise[Complete the table by finding examples of relations on $ZZ$ for the three missing combinations.
+
+  #align(center)[
+    #table(
+      columns: (auto, ..range(6).map(_ => 1fr)),
+      align: center + horizon,
+      fill: (col, row) => if row == 0 { rgb("e5e7eb") } else if calc.even(row) { rgb("f9fafb") } else { none },
+      stroke: 0.5pt + rgb("d1d5db"),
+
+      [*Relations on $ZZ$*], [$<$],
+      [$<=$], [$=$],
+      [$divides$], [$divides.not$],
+      [$!=$],
+
+      [*Reflexive*], [no],
+      [yes], [yes],
+      [yes], [no],
+      [no], [*Symmetric*],
+      [no], [no],
+      [yes], [no],
+      [no], [yes],
+      [*Transitive*], [yes],
+      [yes], [yes],
+      [yes], [no],
+      [no],
+    )
+  ]
+]
+
+#solution[
+
+  #align(center)[
+    #table(
+      columns: (auto, ..range(3).map(_ => 1fr)),
+      align: center + horizon,
+      fill: (col, row) => if row == 0 { rgb("e5e7eb") } else if calc.even(row) { rgb("f9fafb") } else { none },
+      stroke: 0.5pt + rgb("d1d5db"),
+
+      [*Relations on $ZZ$*], [$R=emptyset$],
+      [$R={(x,x): x in ZZ} union {(1,2), (2,3)}$], [$~$ from ex 1.31],
+
+      [*Reflexive*], [no],
+      [yes], [yes],
+      [*Symmetric*], [yes],
+      [no], [yes],
+      [*Transitive*], [yes],
+      [no], [no],
+    )
+  ]
+]
+
