@@ -1,6 +1,4 @@
 #import "/templates/preamble.typ": *
-
-// 1. COVER PAGE AND CONFIGURATION
 #show: euler-math.with(
   title: [Chapter 4: Relations, Functions, Cardinality],
   subtitle: [Book of Proof -- Richard Hammack],
@@ -791,3 +789,269 @@
   ]
 ]
 
+== Equivalence Relations
+
+#exercise[Let $A={1,2,3,4,5,6}$, and consider the following equivalence relation on $A$: $R={(1,1),(2,2),(3,3),(4,4),(5,5),(6,6)),(2,3),(3,2),(4,5),(5,4),(4,6),(6,4),(5,6),(6,5)}$. List the equivalence classes of $R$.]
+
+#solution[
+  $
+    {1}, {2,3}, {4,5,6}
+  $
+]
+
+#exercise[Let $A={a,b,c,d,e}$. Suppose $R$ is an equivalence relation on $A$. Suppose $R$ has two equivalence classes. Also $a R d, b R c$ and $e R d$. Write out $R$ as set.]
+
+#solution[
+  $
+    R = { & (a,a),(b,b),(c,c),(d,d),(e,e) \
+          & (a,d),(d,a),(b,c),(c,b),(e,d), \
+          & (d,e), (a,e), (e,a)}
+  $
+]
+
+#exercise[Let $A={a,b,c,d,e}$. Suppose $R$ is an equivalecne relation on $A$. Suppose $R$ has three equivalence classes. Also $a R d$ and $b R c$. Write out $R$ as a set.]
+
+#solution[
+  $
+    R = { & (a,a),(b,b),(c,c),(d,d),(e,e) \
+          & (a,d), (d,a), (b,c), (c,b)
+            }
+  $
+]
+
+#exercise[Let $A={a,b,c,d,e}$. Suppose $R$ is an equivalence relation on $A$. Suppose also that $a R d$ and $b R c$, $e R a$ and $c R e$. How many equivalence classes does $R$ have?]
+
+#solution[
+  Equivalence classes:
+  $
+    {a,b,c,d,e}
+  $
+  Hence, there is only one equivalence class and the relation is universal.
+]
+
+#exercise[There are two different equivalence relations on the set $A={a,b}$. Describe them. Diagrams will suffice.]
+
+#solution[
+  There are only equality relation ($R={(a,a),(b,b)$}) and universal relation ($R = A times A$).
+
+  Equality relation:
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+
+  Universal relation:
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b$,
+
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+    )
+  ]
+]
+
+#exercise[There are five different equivalence relations on the set $A={a,b,c}$. Describe them all. Diagrams will suffice.]
+
+#solution[
+
+  1. $R = {(a,a),(b,b),(c,c)}$:
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b & limits(bullet)^c$,
+
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+      edge((2, 0), (2, 0), "-|>", bend: 120deg),
+    )
+  ]
+
+  2. $R={(a,a),(b,b),(c,c),(a,b),(b,a)}$:
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b & limits(bullet)^c$,
+
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+      edge((2, 0), (2, 0), "-|>", bend: 120deg),
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+    )
+  ]
+  3. $R={(a,a),(b,b),(c,c),(a,c),(c,a)}$:
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b & limits(bullet)^c$,
+
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+      edge((2, 0), (2, 0), "-|>", bend: 120deg),
+      edge((0, 0), (2, 0), "-|>", bend: 30deg),
+      edge((2, 0), (0, 0), "-|>", bend: 30deg),
+    )
+  ]
+  4. $R={(a,a),(b,b),(c,c),(b,c),(c,b)}$:
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b & limits(bullet)^c$,
+
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+      edge((2, 0), (2, 0), "-|>", bend: 120deg),
+      edge((2, 0), (1, 0), "-|>", bend: 30deg),
+      edge((1, 0), (2, 0), "-|>", bend: 30deg),
+    )
+  ]
+  5. $R={a,b,c} times {a,b,c}$:
+  #align(center)[
+    #diagram(
+      cell-size: 15mm,
+      $limits(bullet)^a & limits(bullet)^b & limits(bullet)^c$,
+
+      edge((0, 0), (0, 0), "-|>", bend: 120deg),
+      edge((1, 0), (1, 0), "-|>", bend: 120deg),
+      edge((2, 0), (2, 0), "-|>", bend: 120deg),
+      edge((0, 0), (1, 0), "-|>", bend: 30deg),
+      edge((1, 0), (0, 0), "-|>", bend: 30deg),
+      edge((0, 0), (2, 0), "-|>", bend: 50deg),
+      edge((2, 0), (0, 0), "-|>", bend: 50deg),
+      edge((1, 0), (2, 0), "-|>", bend: 30deg),
+      edge((2, 0), (1, 0), "-|>", bend: 30deg),
+    )
+  ]
+]
+
+#exercise[Define a relation $R$ on $ZZ$ as $x R y$ if and only if $3x-5y$ is even. Prove $R$ is an equivalence relation. Describe its equivalence classes.]
+
+#solution[
+  $R$ is an equivalence relation, since:
+  1. $R$ is reflexive: $3x-5x=-2x$, which is even. Thus:for every $x in ZZ$, $(x,x) in R$. True.
+  2. $R$ is symmetric: $(x,y) in R => 2 divides 3x-5y <=> 3x-5y = 2 k$ for some $k in ZZ$. Moreover, $3y-5x=2(-k-x+y => 2 divides (3y-5x)$. Therefore, $(y,x) in R$. True.
+  3. $R$ is transitive: Let $(x,y) in R and (y,z) in R$.Now, $2 divides (3x-5y) and 2 divides (3y-5z)$ implies that $3x-5y = 2k$ and $3y-5z = 2l$ for some $k,l in ZZ$. Since, $3x-3y=2(k+y)$, then $(3x-2(k+y))-5z=2l => 3x-5z=2(k+l+y) => 2 divides (3x-5z)$ and $(x,z) in R$. True.
+
+  Equivalence classes on $R$:
+  $
+    [0] & = {-2n, dots,-4,-2,0,2,4, dots, 2n} "for some" n in ZZ \
+    [1] & = {-2n-1, dots, -5,-3,-1,1,3,5, dots, 2n+1} "for some" n in ZZ
+  $
+]
+
+#exercise[Define a relation $R$ on $ZZ$ as $x R y$ if and only if $4 divides (x+3y)$. Prove $R$ is an equivalence relation. Describe its equivalence classes.]
+
+#solution[
+  Firsly, we shall see that $R$ is reflexive, since $x+3x=4x => 4 divides (x+3x)$ and thus $(x,x) in R$ for every $x in ZZ$. Secondly, we shall observe that if $(x,y) in R$, then $4 divides (x+3y)$. Now:
+  $
+       x+3y & equiv 0 pmod(4) \
+    3(x+3y) & equiv 0 pmod(4) \
+    3x + 9y & equiv 0 pmod(4) \
+     3x + y & equiv 0 pmod(4) \
+  $
+  Therefore, $(y,x) in R$ and $R$ is symmetric.
+
+  Lastly, we shall observe that if $(x,y) in R$ and $(y,z) in R$, then:
+  $
+    x+3y = 4q & and y+3z = 4k "for some" q,k in ZZ \
+    x+(4k-3z) & = 4q \
+         x-3z & = 4(q-k) => (x,z) in R
+  $
+  Hence, $R$ is transitive as well.
+
+  Since $R$ holds reflexive, symmetric and transitive property, then it is an equivalence relation.
+
+  Equivalence classes:
+  $
+    [0] & = {-4n, dots -8, -4, 0, 4, 8, dots 4n} "for some" n in ZZ \
+    [1] & = {-4n+1, dots,-3,1,5,dots, 4n+1} "for some " n in ZZ \
+    [2] & = {-4n+2,dots,-6,-2,2,6,dots 4n+2} "for some" n in ZZ \
+    [3] & = {-4n+3,dots,-1,3,7,dots,4n+3} "for some" n in ZZ
+  $
+]
+
+#exercise[Suppose $R$ and $S$ are two equivalence relations on a set $A$. Prove that $R inter S$ is also an equivalence relation.]
+
+#solution[
+  Firstly, we shall see that if both $R$ and $S$ are equivalence relations, then both $R$ and $S$ are reflexive. Since both of them are relations on set $A$, then ${(x,x): x in A} subset.eq R$ and $(x,x): x in A} subset.eq S$. Thus, ${(x,x): x in A} subset.eq (R inter S)$ and $R inter S$ is reflexive as well.
+
+  Moreover, since $R$ and $S$ are symmetric, then if $(x,y) in (R inter S)$, then $(x,y) in R and (x,y) in S$ and by their symmetric property, $(y,x) in R and (y,x) in S$. Therefore, if $(x,y) in (R inter S)$, then $(y,x) in (R inter S)$ as well. Hence, $R inter S$ is also symmetric.
+
+  Lastly, we shall observe, that if $(x,y) in (R inter S) and (y,z) in (R inter S)$, then it is clear that $(x,y) in R and (y,z) in R$ as well as $(x,y) in S and (y,z) in S$. Since both $R$ and $S$ are transitive, then $(x,z) in R and (x,z) in S$, implying that $(x,z) in (R inter S)$. Therefore, $R inter S$ has also transitive property.
+
+  Since $R inter S$ is reflexive, symmetric and transitive, then it is an equivalence relation.
+
+  q.e.d
+]
+
+#exercise[Prove or disprove: If $R$ is an equivalence relation on an infinite set $A$, then $R$ has infinitely many equivalence classes.]
+
+#solution[
+  This statement is false. Suppose a relation $R$ on $ZZ$, such that $x R y$ if and only if $x equiv y pmod(2)$. This relation has only two equivalence classes: either two numbers are even or they are odd.
+]
+
+#exercise[Prove or disprove: If $R$ and $S$ are two equivalence relations on a set $A$, then $R union S$ is also an equivalence relation on $A$.]
+
+#solution[
+  This statement is also false. Let $A={a,b,c,d,dots}$ and suppose that $R = {(x,x): x in A} union {(a,b),(b,a)}$ and $S={(x,x): x in A} union {(b,c),(c,b)}$. $R union S$ lacks $(a,c)$ and $(c,a)$, therefore it is not transitive and not an equivalence relation.
+]
+
+#exercise[Suppose $R$ is an equivalence relation on a finite set $A$, and every equivalence class has the same cardinality $m$. Express $|R|$ in terms of $m$ and $|A|$.]
+
+#solution[
+  Every element of the set $A$ is in relation with every element of its equivalence class. Hence, $|R|=m |A|$.
+]
+
+#exercise[Suppose $R$ is a reflexive and symmetric relation on a finite set $A$. Define a relation on $S$ on $A$ by declaring $x S y$ if and only if for some $n in NN$ there are elements $x_1,x_2,dots,x_n in A$ satisfying $x R x_1, x_1 R x_2, x_2 R x_3, x_3 R x_4, dots, x_(n-1) R x_n$, and $x_n R y$. Show that $S$ is an equivalence relation and $R subset.eq S$. Prove that $S$ is the unique smallest equivalence relation on $A$ containing $R$.]
+
+#solution[
+  Firstly we shall observe that if $(x,y) in R$, then by definition of $S$, $(x,y) in S$. Therefore, $R subset.eq S$. This implies that $S$ is reflexive, since if $R$ is reflexive and $R subset.eq S$, then ${(x,x): x in A} subset.eq S$.
+
+  Now, we shall observe that since $x S y <=> x R x_1 and x_1 R x_2 and x_2 R x_3 and dots and x_n R y$ for some $n in NN$and $R$ is symmetric, then we can invert this chain of relations showing that: $y R x_n and x_n R x_(n-1) and dots and x_3 R x_2 and x_2 R x_1 and x_1 R x <=> y S x$. Thus, $S$ is symmetric.
+
+  Lastly, we will show that if $(x,y) in S$ and $(y,z) in S$, then $x R x_1 and x_1 R x_2 dots x_n R y$ and $y R y_1 and y_1 R y_2 and dots and y_m R z$ for some $n,m in NN$. Therefore, $(x,z) in S$ and $S$ is transitive.
+
+  We have shown that $S$ holds all properties of equivalence class. Now, establish that $T$ is some equivalence relation on $A$, containing $R$. Now, if $(x,y) in S$, then $x T x_1 and x_1 T x_2 and dots x_n T y$ for some $n in NN$. Since $T$ is transitive, then $x T x_1 and x_1 T x_2 and dots x_n T y => x T y$, meaning that $(x,y) in T$. Hence, $S subset.eq T$, which means that $S$ is the smallest possible equivalence relation on $A$ containing $R$.
+]
+
+#exercise[Suppose $R$ is an equivalence relation on a set $A$, with four equivalence classes. How many different equivalence relations $S$ on $A$ are there for which $R subset.eq S$?]
+
+#solution[
+  If $R subset.eq S$, then only equivalence relation $S$ on $A$ with four equivalence classes is $S=R$. Moreover, $S$ can have at least four equivalence classes.
+
+  To ensure that $R subset.eq S$, every relation $S$ other than $R$, will be a concatenation of two or more equivalence classes of $R$. Now, we will count all the relations $S$ combinatorically:
+
+  We shall start by counting relations $S$ with three equivalence classes. Those are achieved by concating two equivalence clasess. There are $binom(4, 2)$ ways of doing it.
+
+  Then, we shall proceed with counting relation $S$ with two equivalence classes. Those are achieved either by concating three equivalence classes into one or by two concatenations of different pairs of equivalence classes. There are $binom(4, 3) + binom(4, 2)/2$ ways of doing it.
+
+  Lastly, there is only one universal relation $S$ with one equivalence class.
+
+  Hence, there are $1+6+4+3+1=15$ possible relations $S$.
+]
+
+#exercise[Show that the relation $eq.dot$ on $F={m/n: m,n in ZZ, n!=0}$ defined such if $a/b eq.dot c/d$, then $a d = b c$ is transitive.]
+
+#solution[Let $a/b eq.dot c/d$ and $c/d eq.dot e/f$ for some $a,b,c,d,e,f in ZZ$. Therefore, $a d = b c$ and $c f = e d$. Now:
+  $
+        c f & = e d quad | dot a \
+    (a f) c & = (a d) e \
+    (a f) c & = (b c) e "since" a d = b c \
+    (a f) c & = (b e) c
+  $
+  Now, if $c!=0$, then $a f = b e$ and $a/b eq.dot e/f$. Otherwise if $c=0$, then $a d = 0$ and $e d = 0$. Since, $d!=0$, then $a=e=0$. If so, then $a f = 0 = b e$ and $a/b eq.dot e/f$.
+
+
+  Hence, $eq.dot$ is transitive.
+
+  q.e.d
+]
