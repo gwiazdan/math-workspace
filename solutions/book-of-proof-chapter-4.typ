@@ -1055,3 +1055,74 @@
 
   q.e.d
 ]
+
+== Equivalence Classes and Partitions
+
+#exercise[List all the partitions of the set $A={a,b}$. Compare your answer to Exercise 1.37.]
+
+#solution[
+  Either ${{a},{b}}$ or ${{a,b}}$. The former is equality relation and the latter - universal relation.
+]
+
+#exercise[List all partitions of the set $A={a,b,c}$. Compare your answer to the answer to Exercise 1.38.]
+
+#solution[
+  All possible partitions:
+  $
+    & {{a},{b},{c}} \
+    & {{a,b},{c}} \
+    & {{a},{b,c}} \
+    & {{a,c},{b}} \
+    & {{a,b,c}}
+  $
+  There are five possible partitions, obtained by five possible equivalence relations on $A$, shown in Ex. 1.38.
+]
+
+#exercise[Describe the partition of $ZZ$ resulting from the equivalence relation $equiv pmod(4)$.]
+
+#solution[
+  Partition resulting from the equivalence relation $equiv pmod(4)$:
+  $
+    {{4x: x in ZZ}, {4x+1: x in ZZ}, {4x+2: x in ZZ}, {4x+3: x in ZZ}}
+  $
+]
+
+#exercise[Suppose $P$ is a partition of set $A$. Define a relation $R$ on $A$ by declaring $x R y$ if and only if $x,y in X$ for some $X in P$. Prove $R$ is an equivalence relation on $A$. Then prove that $P$ is the set of equivalence classes of $R$.]
+
+#solution[
+  Firstly, we shall show that if $x in X$, then $x R x$. Thus, $R$ is reflexive. Next, let $(x,y) in R$ if so, then $x,y in X$ which implies that $(y,x) in R$. Hence, $R$ is symmetric. Lastly, we shall observe that if $(x,y) in R and (y,z) in R$, then $x,y in X$ and $y,z in Y$. However, since block of partitions are disjoint, therefore $X=Y$. This means that $x,z in X$ and $(x,z) in R$. Thus, $R$ is also transitive and holds all properties of equivalence relation. Now, since $R$ is an equivalence relation, then there is a set $A slash R$ of equivalence classes induced by $R$.
+
+  Now, we will prove that $P subset.eq A slash R$:
+  Let $X in P$ and $x in X$. We will show that $X=[x]_R$.
+  - If $y in X$, then by defintion $x R y$ and $y in [x]_R$. Hence, $X subset.eq [x]_R$.
+  - If $y in [x]_R$ and trivially $x in [x]_R$, then $x R y => x,y in X$ and thus, $[x]_R subset.eq X$.
+  Having proved that $[x]_R=X$ and $P subset.eq A slash R$, we shall now show that $A slash R subset.eq P$:
+
+  Now, suppose that there is an element $q_0 in A slash R and q_0 in.not P$. Moreover, since $q_0$ is a class of equivalence, it is not an empty set and disjoint to others equivalence classes. We shall use the fact that partition $P$ consist of disjoint blocks as well. Both blocks of partitions and equivalence classes sums up to set $A$. Hence:
+  $
+    union.sq.big_(p in P) p = A & quad union.sq.big_(q in A slash R) q = A \
+  $
+  Where $union.sq$ is an operator of disjoint sum. Now, since $P subset.eq A slash R$, then:
+  $
+    union.sq.big_(q in A slash R) q = (union.sq.big_(p in P) p) union.sq q_0 = A union.sq q_0
+  $
+  Since, $union.sq.big_(q in A slash R) q = A$, then $A union.sq q_0 = A$, which is true if and only if $q_0 = emptyset$, which contradicts with initial assumptions. Hence, there is no element $q_0 in A slash R$, which does not belong to $P$. It implies that $A slash R subset.eq P$ and moreover, $A slash R = P$.
+
+  q.e.d
+]
+
+#exercise[
+
+  Consider the partition $P = {{dots, -4, -2,0,2,4,dots},{dots,-5,-3,-1,1,3,5,dots}}$ of $ZZ$. Let $R$ be the equivalence relation whose equivalence classes are the two elements of $P$. What familiar equivalence relation is $R$?
+]
+
+#solution[
+  This familiar equivalence relation is same parity relation or $x R y iff 2 divides (x-y)$
+]
+
+#exercise[
+
+  Consider the partition $P={{0},{-1,1},{-2,2},{-3,3},{-4,4},dots}$ of $ZZ$. Describe the equivalence relation whose equivalence classes are the elements of $P$.
+]
+
+#solution[This relation is $x R y iff |x|=|y|$.]
