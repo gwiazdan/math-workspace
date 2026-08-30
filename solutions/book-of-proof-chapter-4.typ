@@ -1,4 +1,5 @@
 #import "/templates/preamble.typ": *
+
 #show: euler-math.with(
   title: [Chapter 4: Relations, Functions, Cardinality],
   subtitle: [Book of Proof -- Richard Hammack],
@@ -1126,3 +1127,205 @@
 ]
 
 #solution[This relation is $x R y iff |x|=|y|$.]
+
+== The Integers Modulo n
+
+#exercise[Write the addition and multiplication tables for $ZZ_2$.]
+
+#solution[
+  #grid(
+  columns: (auto, auto),
+  gutter: 3em,
+  [#table(
+  columns: 3,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$+$], [$[0]$], [$[1]$],
+  [$[0]$], [$[0]$],   [$[1]$], 
+  [$[1]$], [$[1]$],   [$[0]$], 
+
+)],
+  [#table(
+  columns: 3,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$dot$], [$[0]$], [$[1]$],
+  [$[0]$], [$[0]$],   [$[0]$], 
+  [$[1]$], [$[0]$],   [$[1]$], 
+
+)])]
+
+#exercise[Write the addition and multiplication tables for $ZZ_3$.]
+
+#solution[
+  #grid(
+  columns: (auto, auto),
+  gutter: 3em,
+  [#table(
+  columns: 4,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$+$], [$[0]$], [$[1]$], [$[2]$],
+  [$[0]$], [$[0]$], [$[1]$], [$[2]$],
+  [$[1]$], [$[1]$], [$[2]$], [$[0]$],
+  [$[2]$], [$[2]$], [$[0]$], [$[1]$],
+
+)],
+  [#table(
+  columns: 4,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$dot$], [$[0]$], [$[1]$], [$[2]$],
+  [$[0]$], [$[0]$], [$[0]$], [$[0]$],
+  [$[1]$], [$[0]$], [$[1]$], [$[2]$],
+  [$[2]$], [$[0]$], [$[2]$], [$[1]$],
+
+)])]
+
+#exercise[Write the addition and multiplication tables for $ZZ_4$.]
+
+#solution[
+  #grid(
+  columns: (auto, auto),
+  gutter: 3em,
+  [#table(
+  columns: 5,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$+$], [$[0]$], [$[1]$], [$[2]$], [$[3]$],
+  [$[0]$], [$[0]$], [$[1]$], [$[2]$], [$[3]$],
+  [$[1]$], [$[1]$], [$[2]$], [$[3]$], [$[0]$],
+  [$[2]$], [$[2]$], [$[3]$], [$[0]$], [$[1]$],
+  [$[3]$], [$[3]$], [$[0]$], [$[1]$], [$[2]$],
+)],
+  [#table(
+  columns: 5,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$dot$], [$[0]$], [$[1]$], [$[2]$], [$[3]$],
+  [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$],
+  [$[1]$], [$[0]$], [$[1]$], [$[2]$], [$[3]$],
+  [$[2]$], [$[0]$], [$[2]$], [$[0]$], [$[2]$],
+  [$[3]$], [$[0]$], [$[3]$], [$[2]$], [$[1]$],
+
+)])]
+
+#exercise[Write the addition and multiplication tables for $ZZ_6$.]
+
+#solution[
+  #grid(
+  columns: (auto, auto),
+  gutter: 3em,
+  [#table(
+  columns: 7,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$+$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$], [$[5]$],
+  [$[0]$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$], [$[5]$],
+  [$[1]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$], [$[5]$], [$[0]$],
+  [$[2]$], [$[2]$], [$[3]$], [$[4]$], [$[5]$], [$[0]$], [$[1]$],
+  [$[3]$], [$[3]$], [$[4]$], [$[5]$], [$[0]$], [$[1]$], [$[2]$],
+  [$[4]$], [$[4]$], [$[5]$], [$[0]$], [$[1]$], [$[2]$], [$[3]$],
+  [$[5]$], [$[5]$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$],
+)],
+  [#table(
+  columns: 7,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$dot$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$], [$[5]$],
+  [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$],
+  [$[1]$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$], [$[5]$],
+  [$[2]$], [$[0]$], [$[2]$], [$[4]$], [$[0]$], [$[2]$], [$[4]$],
+  [$[3]$], [$[0]$], [$[3]$], [$[0]$], [$[3]$], [$[0]$], [$[3]$],
+  [$[4]$], [$[0]$], [$[4]$], [$[2]$], [$[0]$], [$[4]$], [$[2]$],
+  [$[5]$], [$[0]$], [$[5]$], [$[4]$], [$[3]$], [$[2]$], [$[1]$],
+
+)])]
+
+#exercise[Suppose $[a],[b] in ZZ_5$ and $[a] dot [b]=[0]$. Is it necessarily true that either $[a]=[0]$ or $[b]=[0]$?]
+
+#solution[
+  Multiplication table for $ZZ_5$:
+  #table(
+  columns: 6,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$dot$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$],
+  [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$],
+  [$[1]$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$],
+  [$[2]$], [$[0]$], [$[2]$], [$[4]$], [$[1]$], [$[3]$],
+  [$[3]$], [$[0]$], [$[3]$], [$[1]$], [$[4]$], [$[2]$],
+  [$[4]$], [$[0]$], [$[4]$], [$[3]$], [$[2]$], [$[1]$],
+
+)
+Yes, it is necessarily true that either $[a]=[0]$ or $[b]=[0]$.
+]
+
+#exercise[Suppose $[a],[b] in ZZ_6$ and $[a] dot [b]=[0]$. Is it necessarily true that either $[a]=[0]$ or $[b]=[0]$? What if $[a],[b] in ZZ_7$?]
+
+#solution[
+  Multiplication table for $ZZ_6$:
+  #table(
+  columns: 7,
+  inset: 0.7em,
+  align: center + horizon,
+  fill: (x, y) => if x == 0 or y == 0 { luma(240) },
+  
+  [$dot$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$], [$[5]$],
+  [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$], [$[0]$],
+  [$[1]$], [$[0]$], [$[1]$], [$[2]$], [$[3]$], [$[4]$], [$[5]$],
+  [$[2]$], [$[0]$], [$[2]$], [$[4]$], [$[0]$], [$[2]$], [$[4]$],
+  [$[3]$], [$[0]$], [$[3]$], [$[0]$], [$[3]$], [$[0]$], [$[3]$],
+  [$[4]$], [$[0]$], [$[4]$], [$[2]$], [$[0]$], [$[4]$], [$[2]$],
+  [$[5]$], [$[0]$], [$[5]$], [$[4]$], [$[3]$], [$[2]$], [$[1]$],
+  )
+  No, it is not necessarily true in $ZZ_6$ that either $[a]=[0]$ or $[b]=[0]$, since $[2] dot [3] = [0]$.
+
+  However, in $ZZ_7$ it is necessarily true that either $[a]=[0]$ or $[b]=[0]$. The difference between $ZZ_6$ and $ZZ_7$ is that $7$ is a prime number and $6$ is a composite number, which can be obtained by product of $2$ and $3$.
+]
+
+#exercise[Do the following calculations in $ZZ_9$, in each case expressing your answer as $[a]$ with $0<=a<=8$.
+#grid(
+  columns: (auto, auto, auto, auto),
+  gutter: 1em, // Odstęp między punktami
+  [(a) $[8]+[8]$],
+  [(b) $[24]+11$],
+  [(c) $[21] dot [15]$],
+  [(d) $[8] dot [8]$],
+)]
+
+#solution[
+(a) $[7]$
+(b) $[8]$
+(c) $[0]$
+(d) $[1]$
+]
+
+#exercise[Suppose $[a],[b] in ZZ_n$, and $[a]=[a']$ and $[b]=[b']$. Alice adds $[a]$ and $[b]$ as $[a]+[b]=[a+b]$. Bob adds them as $[a']+[b']=[a'+b']$. Show that their answers $[a+b]$ and $[a'+b']$ are the same.]
+
+#solution[
+  Suppose that $[a], [b] in ZZ_n$ as well as $[a]=[a']$ and $[b]=[b']$. Moreover, let $a'=a+ n k$ and $b' = b+ n l$ for some $k,l in ZZ$. Now:
+  $
+  [a'+b']&=[a+n k + b + n l] \ &= [a+b + n(k+l)]\ &=[a+b]+[n(k+l)]\ &=[a+b]+[0] \ &=[a+b]
+  $
+
+  q.e.d
+]
