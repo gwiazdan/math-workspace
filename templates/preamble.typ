@@ -21,4 +21,6 @@
 
 #let pmod(m) = context h(pmod-spacing.get()) + $(mod med #m)$
 
+#let Image(m) = $op("Im")(m)$
+
 #let iff = sym.arrow.l.r.double.long

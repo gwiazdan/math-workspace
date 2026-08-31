@@ -26,25 +26,20 @@
       $limits(bullet)^0 & limits(bullet)^1 & limits(bullet)^2 \
       limits(bullet)^3 & limits(bullet)^4 & limits(bullet)^5$,
 
-      // --- Krawędzie dla 1 -> 0 ---
       edge((1, 0), (0, 0), "-|>"),
 
-      // --- Krawędzie dla 2 -> {1, 0} ---
       edge((2, 0), (1, 0), "-|>"),
       edge((2, 0), (0, 0), "-|>", bend: -30deg),
 
-      // --- Krawędzie dla 3 -> {2, 1, 0} ---
       edge((0, 1), (0, 0), "-|>"),
       edge((0, 1), (1, 0), "-|>"),
       edge((0, 1), (2, 0), "-|>"),
 
-      // --- Krawędzie dla 4 -> {3, 2, 1, 0} ---
       edge((1, 1), (0, 1), "-|>"),
       edge((1, 1), (0, 0), "-|>"),
       edge((1, 1), (1, 0), "-|>"),
       edge((1, 1), (2, 0), "-|>"),
 
-      // --- Krawędzie dla 5 -> {4, 3, 2, 1, 0} ---
       edge((2, 1), (1, 1), "-|>"),
       edge((2, 1), (0, 1), "-|>", bend: 30deg),
       edge((2, 1), (2, 0), "-|>"),
@@ -113,25 +108,20 @@
       edge((1, 1), (1, 1), "-|>", bend: -120deg),
       edge((2, 0), (2, 0), "-|>", bend: 120deg),
       edge((2, 1), (2, 1), "-|>", bend: -120deg),
-      // --- Krawędzie dla 1 -> 0 ---
-      edge((1, 0), (0, 0), "-|>"),
 
-      // --- Krawędzie dla 2 -> {1, 0} ---
+      edge((1, 0), (0, 0), "-|>"),
       edge((2, 0), (1, 0), "-|>"),
       edge((2, 0), (0, 0), "-|>", bend: -30deg),
 
-      // --- Krawędzie dla 3 -> {2, 1, 0} ---
       edge((0, 1), (0, 0), "-|>"),
       edge((0, 1), (1, 0), "-|>"),
       edge((0, 1), (2, 0), "-|>"),
 
-      // --- Krawędzie dla 4 -> {3, 2, 1, 0} ---
       edge((1, 1), (0, 1), "-|>"),
       edge((1, 1), (0, 0), "-|>"),
       edge((1, 1), (1, 0), "-|>"),
       edge((1, 1), (2, 0), "-|>"),
 
-      // --- Krawędzie dla 5 -> {4, 3, 2, 1, 0} ---
       edge((2, 1), (1, 1), "-|>"),
       edge((2, 1), (0, 1), "-|>", bend: 30deg),
       edge((2, 1), (2, 0), "-|>"),
@@ -317,7 +307,7 @@
           align: center + horizon,
           ..range(4, -5, step: -1)
             .map(y => range(-4, 5).map(x => {
-              // Zamalowane stricte nad przekątną (x < y)
+
               let filled = x < y
               box(
                 width: 5pt,
@@ -1305,7 +1295,7 @@ Yes, it is necessarily true that either $[a]=[0]$ or $[b]=[0]$.
 #exercise[Do the following calculations in $ZZ_9$, in each case expressing your answer as $[a]$ with $0<=a<=8$.
 #grid(
   columns: (auto, auto, auto, auto),
-  gutter: 1em, // Odstęp między punktami
+  gutter: 1em,
   [(a) $[8]+[8]$],
   [(b) $[24]+11$],
   [(c) $[21] dot [15]$],
@@ -1328,4 +1318,46 @@ Yes, it is necessarily true that either $[a]=[0]$ or $[b]=[0]$.
   $
 
   q.e.d
+]
+
+= Functions
+
+== Injective and Surjective Functions
+
+#exercise[Let $A={1,2,3,4}$ and $B={1,2,3}$. Give an example of function $f: A->B$ that is neither injetive nor surjective.]
+
+#solution[An example of such function is: $f={(1,1),(2,1),(3,2),(4,2)}$.
+
+- It is not injective, since $f(1)=f(2)$
+- It is not surjective, as $f(x)!=3$ for any $x in A$.
+]
+
+#exercise[Consider the logarithm function $ln: (0, infinity) -> RR$. Decide whether this function is injective and whether it is surjective.]
+
+#solution[
+  1. $ln$ is injective:
+  Suppose $a,a' in (0,infinity)$ and $ln(a)=ln(a')$. Now:
+  $
+    ln(a) &= ln(a') \
+    ln(a) - ln (a') &= 0 \
+    ln(a/a') = 0 \
+    a/a' = 1 \
+    a = a'
+  $
+  Hence, $ln(x)$ is injective.
+
+  2. $ln$ is surjective:
+  Let $b in RR$. We seek $a in (0, infinity) subset RR$ for which $ln(a)=b$. Solving for $a$ gives $a=e^b$. Therefore, $ln(e^b)=b$ for any $b in RR$, which implies that $ln(x)$ is surjective.
+]
+
+#exercise[Consider the cosine function $cos: RR-> RR$. Decide whether this function is injective and whether it is surjective. What if it had been defined as $cos: RR -> [-1,1] subset RR$.]
+
+#solution[
+  1. $cos$ is not injective.
+  Let $x=0$ and $x'=2pi$. Both $cos(x)=1 and cos(x')=1 => cos(x)=cos(x')$.
+  
+  2. $cos$ is not surjective.
+  $cos(x)=2$ for no $x in RR$, since $Image(cos)=[-1,1] subset RR$.
+
+  However, if it had been defined as $cos: RR -> [-1,1]$, function would have been stil not injective, but since cosine range is $[-1,1] subset RR$, then it would be surjective.
 ]
