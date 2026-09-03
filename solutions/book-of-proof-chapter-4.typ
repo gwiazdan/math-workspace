@@ -1306,7 +1306,6 @@ Yes, it is necessarily true that either $[a]=[0]$ or $[b]=[0]$.
 (a) $[7]$
 (b) $[8]$
 (c) $[0]$
-(d) $[1]$
 ]
 
 #exercise[Suppose $[a],[b] in ZZ_n$, and $[a]=[a']$ and $[b]=[b']$. Alice adds $[a]$ and $[b]$ as $[a]+[b]=[a+b]$. Bob adds them as $[a']+[b']=[a'+b']$. Show that their answers $[a+b]$ and $[a'+b']$ are the same.]
@@ -1360,4 +1359,440 @@ Yes, it is necessarily true that either $[a]=[0]$ or $[b]=[0]$.
   $cos(x)=2$ for no $x in RR$, since $Image(cos)=[-1,1] subset RR$.
 
   However, if it had been defined as $cos: RR -> [-1,1]$, function would have been stil not injective, but since cosine range is $[-1,1] subset RR$, then it would be surjective.
+]
+
+#exercise[A function $f: ZZ->ZZ times ZZ$ is defined as $f(n)=(2n,n+3)$. Verify whether this function is injective and whether it is surjective.]
+
+#solution[
+  1. *Injectivity:*
+  Suppose, $a,a' in ZZ$ and $f(a)=f(a')$. We shall observe that:
+  $
+    f(a) &= f(a') \
+    (2a,a+3) &= (2a',a'+3) \
+    2a = 2a' &and a+3 = a'+3 \
+    a = a' &and a = a' \
+    a &= a'
+  $
+  Hence, $f$ is indeed injective.
+
+  2. *Surjectivity*:
+  Let $b=(1,4)$ and $a in ZZ$. Now:
+  $
+    f(a) &= (1,4) \
+    (2a,a+3) &= (1,4) \
+    2a = 1 & and a+3 = 4 \
+    a = 1/2 & and a = 1 
+  $
+  Since $1/2 != 1$, then no such integer $a$ exists.
+  Therefore, $f$ is not surjective.
+]
+
+#exercise[A function $f: ZZ->ZZ$ is defined as $f(n)=2n+1$. Verify whether this function is injective and whether it is surjective.]
+
+#solution[
+  1. *Injectivity:*
+  Let $a,a' in ZZ$ and $a != a'$. Now:
+  $
+    a &!= a' \
+    2a &!= 2a' \
+    2a + 1 &!= 2a' +1 \
+    f(a) &!= f(a')
+  $
+  Therefore, $f$ is injective.
+
+  2. *Surjectivity*:
+  Let $b=2, a in ZZ$ and $f(a)=2$. We shall observe that:
+  $
+    f(a) &= 2 \
+    2a+1 &= 2 \
+    2a &= 1 \
+    a &= 1/2 in.not ZZ
+  $
+  Since $1/2 in.not ZZ$, the element $2$ has no preimage in $ZZ$. Hence, $f$ is not surjective.
+]
+
+#exercise[A function $f: ZZ times ZZ -> ZZ$ defined as $f(m,n)=3n-4m$. Verify whether this function is injective and whether it is surjective.]
+
+#solution[
+  1. *Injectivity:*
+  Let $m,n in ZZ$. We shall observe that:
+  $
+    f(1,1) = 3-4 = -1
+  $
+  While
+  $
+    f(4,5) = 3*5 - 4*4 = 15 - 16 = -1
+  $
+  Thus, $f(1,1) = f(4,5)$, implying that $f$ is not injective.
+
+  2. *Surjectivity:*
+  Let $b in ZZ$. We are looking for $m,n in ZZ$, such as $f(m,n)=b$. We shall observe that:
+  $
+    f(m,n) &= b \
+    3n-4m &= b \
+    3n + 4(-m) &= b 
+  $
+  Since $gcd(3,4)=1$, then by Bézout's identity, there exists $m_0,n_0 in ZZ$ such that $3n_0 - 4m_0 = 1$. Specifically, taking $n_0 = -1$ and $m_0 = -1$ gives:
+  $
+    3(-1) - 4(-1) = -3 + 4 =1
+  $
+
+  Multiplying this equation by $b$ yields:
+  $3(-b) - 4(-b) = b$
+
+  Thus, for any $b in ZZ$, we can choose $(m,n) = (-b,-b) in ZZ times ZZ$, giving $f(-b,-b)=b$.
+  Hence, $f$ is surjective.
+]
+
+#exercise[A function $f: ZZ times ZZ -> ZZ times ZZ$ is defined as $f(m,n)=(m+n,2m+n)$. Verify whether this function is injective and whether it is surjective.]
+
+#solution[
+  1. *Injectivity:*
+  Let $m,m',n,n' in ZZ$ and $f(m,n)=f(m',n')$. We shall see that:
+  $
+    f(m,n) &= f(m',n') \
+    (m+n,2m+n) &= (m'+n',2m'+n') \
+    m(1,2)+n(1,1) &= m'(1,2)+n'(1,1) \
+    (m-m')(1,2)+(n-n')(1,1) &= 0 \
+    m-m'=0 & and n-n' =0 \
+    m = m' & and n = n' 
+  $
+  Hence, $f$ is injective.
+
+  2. *Surjectivity:*
+  Suppose $(p,q) in ZZ times ZZ$. We are looking for $(k,l) in ZZ times ZZ$ for which $f(k,l)=(p,q)$. Now:
+  $
+    (k+l, 2k+l) &= (p,q) \
+    p = k+l &and q = 2k+l \
+    q-p = k &and 2p - q  =l
+  $
+  Hence, $f(q-p,2p-q)=(p,q)$ and since $(q-p,2p-q) in ZZ times ZZ$, then $f$ is surjective. 
+]
+
+#exercise[Prove that the function $f: RR \\ {2} -> RR \\ {5}$ defined by $f(x)=(5x+1)/(x-2)$ is bijective.]
+
+#solution[
+  1. *Injectivity:*
+  Let $a,a' in RR \\ {2}$ and $f(a)=f(a')$. Now:
+  $
+    f(a) &= f(a') \
+    (5a+1)/(a-2) &= (5a'+1)/(a'-2) \
+    (5a+1)/(a-2)-(5a'+1)/(a'-2) &= 0 \
+    ((5a+1)(a'-2)-(5a'+1)(a-2))/((a-2)(a'-2)) &= 0 \
+    (5a+1)(a'-2)-(5a'+1)(a-2) &=0 \
+    5a a' -10a +a' -2 - 5a a' + 10 a' -a +2 &= 0 \
+    11(a'-a) &= 0 \
+    a &= a'
+  $
+  Hence, $f(a)=f(a') => a = a'$ and $f$ is injective.
+
+  2. *Surjectivity:*
+  Suppose $b in RR \\ {5}$. We are looking for $a in RR \\ {2}$, such as $f(a)=b$. Now:
+  $
+    f(a) &= b \
+    (5a+1)/(a-2) &= b\
+    5 + (10+1)/(a-2) &= b\
+    11/(a-2) &= b-5 \
+    "Since" b!=5: quad 11/(b-5)&=a-2 \
+    11/(b-5)+2 &= a \
+    (2b+1)/(b-5) &= a 
+   $
+   
+   Therefore, $f((2b+1)/(b-5))=b$, where $(2b+1)/(b-5) in RR \\ {2}$, since $(2b+1)/(b-5)=2 => 2b+1=2b-10 => 1= - 10$, which proves that $f$ is surjective.
+
+   Since $f$ is both injective and surjective, then it is bijective.
+
+   q.e.d
+]
+
+#exercise[Prove that the function $f: RR\\{1} -> RR \\ {1}$ defined by $f(x)=((x+1)/(x-1))^3$ is bijective.]
+
+#solution[
+  1. *Injectivity:*
+  Let $a,a' in RR \\ {1}$ and $f(a)=f(a')$. We shall observe that:
+  $
+    f(a) &= f(a') \
+    ((a+1)/(a-1))^3 &= ((a'+1)/(a'-1))^3 \
+    (a+1)/(a-1) &= (a'+1)/(a'-1) \
+    (a+1)(a'-1) &= (a'+1)(a-1) \
+    cancel(a a') - a + a' cancel(-1) &= cancel(a a') - a' +a cancel(-1) \
+    a &= a'
+
+
+  $
+  Therefore, $f(a)=f(a') => a=a'$, which implies that $f$ is injective.
+
+  2. *Surjectivity:*
+  Let $b in RR \\ {1}$. We are searching for $a in RR\\{1}$ for which $f(a)=b$. We shall observe that:
+  $
+    f(a) &= b \
+    ((a+1)/(a-1))^3 &= b \
+    (a+1)/(a-1) &= root(3,b) \
+    a + 1 &= a root(3,b) - root(3,b) \
+    a(1-root(3,b)) &= -1-root(3,b) \
+    a &= (-1-root(3,b))/(1-root(3,b))
+      &= (root(3,b)+1)/(root(3,b)-1) in RR \\ {1}
+  $
+  Hence, $f((root(3,b)+1)/(root(3,b)-1))=b$, which implies that $f$ is surjective.
+
+  Since $f$ is both surjective and injective, then it is bijective as well.
+
+  q.e.d
+]
+
+#exercise[Consider the function $theta: {0,1} times NN -> ZZ$ defined as $theta(a,b)=(-1)^a b$. Is $theta$ injective? Is it surjective? Bijective? Explain.]
+
+#solution[
+  First of all, suppose that $0 in.not NN$.
+
+  1. *Injectivity:*
+  Let $a,a' in {0,1}, thick b,b' in NN$ and let $theta(a,b)=theta(a',b')$. We shall observe that:
+  $
+    theta(a,b) &= theta(a',b') \
+    (-1)^a b &= (-1)^(a') b' \
+    (-1)^(a-a') b &= b' \
+    (-1)^(a-a') b/b' &= 1
+  $
+  Since $b,b' in NN$, then $b/b'>0$, forcing $(-1)^(a-a')$ to be positive as well. The equation is therefore true if and only if $a-a'=0$ and $b=b'$. Since $theta(a,b)=theta(a',b')=>(a=a' and b=b')$, then $theta$ is injective.
+
+  2. *Surjectivity:*
+  Since, $0 in.not NN$ and $(-1)^a b =0 iff b=0$, then $theta(a,b) != 0 in ZZ$ and hence, $theta$ is not surjecitve.
+
+  $theta$ is injective, but not surjective, therefore it is not bijective. 
+]
+
+#exercise[Consider the function $theta: {0,1} times NN -> ZZ$ defined as $theta(a,b)=a-2a b +b$. Is $theta$ injective? Is it surjective? Bijective? Explain.]
+
+#solution[
+  1. *Injectivity:*
+  Let $a,a' in {0,1}, thick b,b' in NN$ and let $theta(a,b)=theta(a',b')$. We shall observe that:
+  $
+    theta(a,b) &= theta(a',b') \
+    a-2a b + b &= a' -2a' b' + b' \
+  $
+  There are four cases:
+  - $a=1, a'=0$:
+  $
+    1-2b+b = b' \
+    b+b' = 1
+  $
+  Since $b!=0$ and $b'!=0$, then there is no solution to this equation.
+
+  - $a=1, a'=1$:
+  $
+    1-2b+b &= 1-2b'+b' \
+    -b &= -b' \
+    b &= b'
+  $
+
+  - $a=0, a'=1$:
+  $
+
+    b &= 1-2b'+b' \
+    b + b' &= 1 
+  $
+  No solution.
+  
+  - $a=0, a'=0$:
+  $
+    b = b'
+  $
+
+  Therefore, the equation is true if and only if $a=a'$ and $b=b'$. Hence, $theta(a,b)=theta(a',b') => (a=a' and b=b')$. Therefore, $theta$ is injective.
+
+  2. *Surjectivity:*
+  Let $c in ZZ$. We are looking for $(a,b) in {0,1} times NN$ for which $theta(a,b)=c$. We shall observe that:
+  $
+    theta(a,b) &= c \
+    a -2a b + b &= c \ 
+    1 - b = c & or b = c
+  $
+  Now, since $b in NN$, then $1-b in (-infinity, 0] subset ZZ$ and $b in [1, infinity)  subset ZZ$. Since $([-infinity, 0] inter ZZ) union ([1, infinity] inter ZZ) = ZZ$, then $theta$ is surjective.
+]
+
+#exercise[Consider the function $f: RR^2->RR^2$ defined by formula $f(x,y)=(x y, x^3)$. Is $f$ injective? Is it surjective? Bijective? Explain.]
+
+#solution[
+  1. *Injectivity:*
+  Suupose $x=0$, therefore $f(x,y)=(0,0)$ for every $y$. Hence, $f$ is not injective.
+
+  2. *Surjectivity:*
+  Let $(c,d) in RR^2$. We are searching for $(a,b) in RR^2$ such as $f(a,b)=(c,d)$. We shall observe that:
+  $
+    f(a,b) &= (c,d) \
+    (a b, a^3) &= (c,d) \
+    a b = c & and a^3 = d\
+    a b = c & and a = root(3,d) \
+    root(3,d) b = c & and a = root(3,d) \
+    b = c / root(3,d) & and a = root(3,d) 
+  $
+  Thus, $f(root(3,d),c/root(3,d))=(c,d)$. However, $d!=0$ and thus, $f$ is not surjective.
+]
+
+#exercise[Consider the function $theta: cal(P)(ZZ) -> cal(P)(ZZ)$ defined as $theta(X)=overline(X)$. Is $theta$ injective? Is it surjective? Bijective? Explain.]
+
+#solution[
+  1. *Injectivity:*
+  Let $X, X' in cal(P)(ZZ)$ and $theta(X)=theta(X')$. Now:
+  $
+    theta(X) &= theta(X') \
+    overline(X) &= overline(X') \
+    U \\ X &= U \\ X' \
+    U \\ (U \\ X) &= U \\ (U \\ X') \
+    X &= X'
+  $
+  Hence, $theta$ is injective.
+  
+  2. *Surjectivity:*
+  Let $Y in cal(P)(ZZ)$. We are searching for $X in cal(P)(ZZ)$ for which $theta(X)=Y$. We shall observe that:
+  $
+    theta(X) &= Y \
+    overline(X) &= Y \
+    U \\ X &= Y \
+    U \\ (U \\ X) &= U \\ Y \
+    X &= U \\ Y \
+    X &= overline(Y)
+  $
+  Hence, $theta(overline(Y))=Y$ and therefore, $theta$ is surjective.
+
+  Since $theta$ is both surjective and injective, then it is bijective.
+]
+
+#exercise[This question concerns functions $f: {A,B,C,D,E,F,G}->{1,2,3,4,5,6,7}$. How many such functions are there? How many of these functions are injective? How many are surjective? How many are bijective?]
+
+#solution[
+  Let $X = {A, B, C, D, E, F, G}$ and $Y = {1, 2, 3, 4, 5, 6, 7}$. 
+  Note that $|X| = |Y| = 7$.
+
+  1. *Total number of functions:*
+     Each of the $7$ elements in $X$ can be independently mapped to any of the $7$ elements in $Y$. 
+     Thus, there are $7^7 = 823543$ total functions.
+
+  2. *Injective functions:*
+     An injective function maps distinct elements of $X$ to distinct elements of $Y$. 
+     The number of choices for the outputs is $7 dot 6 dot 5 dot 4 dot 3 dot 2 dot 1 = 7! = 5,040$.
+
+  3. *Surjective and Bijective functions:*
+     Since $X$ and $Y$ are finite sets of the same cardinality ($|X| = |Y| = 7$), a function $f: X -> Y$ is injective if and only if it is surjective, which is also equivalent to being bijective.
+     Therefore, there are $7! = 5040$ surjective functions and $7! = 5040$ bijective functions.
+]
+
+#exercise[This question concers functions $f: {A,B,C,D,E}->{1,2,3,4,5,6,7}$. How many such functions are there? How many of these functions are injective? How many are surjective? How many are bijective?]
+
+#solution[
+  Let $X={A,B,C,D,E}$ and $Y={1,2,3,4,5,6,7}$.
+  Note that $|X|=5$ and $|Y|=7$.
+
+  1. *Total number of functions:* Each of the $5$ elements can be independently mapped to any of the $7$ elements in $Y$.
+  Thus, there are $7^5 = 16807$ total functions.
+
+  2. *Injective functions:*
+  The number of choices for the outputs is $7 dot 6 dot 5 dot 4 dot 3 = 7! / 2! = 2520$.
+
+  2. *Surjective and Bijective functions:*
+  There are none surjective functions, since $|X|<|Y|$. Hence, there are none bijective functions as well.
+]
+
+#exercise[This question concerns functions $f: {A,B,C,D,E,F,G}->{1,2}$. How many such functions are there? How many of these functions are injective? How many are surjective? How many are bijective?]
+
+#solution[
+  Let $X={A,B,C,D,E,F,G}$ and $Y={1,2}$.
+  Note that $|X|=7$ and $|Y|=2$.
+
+  1. *Total number of functions:* $7$ elements can be independently mapped to any of the $2$ elements in $Y$. Hence, $2^7=128$ is the total number of such functions.
+
+  2. *Injective functions:* None of the functions can be injective, since $|X|>|Y|$.
+
+  3. *Surjective functions:* There are only $2$ not surjective functions and hence, there are $126$ surjective functions.
+
+  4. *Bijective functions:* None of the functions is bijective, since none of them are injective.
+]
+
+#exercise[Prove that the function $f: NN -> ZZ$ defined as $f(n)=((-1)^n (2n-1)+1)/4$ is bijective.]
+
+#solution[
+  1. *Injectivity:* Let $a,a' in NN$ and $f(a)=f(a')$. We shall observe that:
+  $
+    f(a) &= f(a') \
+    ((-1)^a (2a-1)+1)/4 &= ((-1)^a' (2a'-1)+1)/4 \
+    (-1)^a (2a-1)+1 &= (-1)^a' (2a'-1)+1 \
+    (-1)^a (2a-1) &= (-1)^a' (2a'-1) \
+    2a (-1)^a - (-1)^a &= 2a' (-1)^a' -(-1)^a' \
+    2((-1)^a a-(-1)^a' a') + (-1)^a' - (-1)^a &= 0 \
+  $
+  We shall examine four cases:
+  - both $a, a'$ are even:
+  $
+    2(a-a') &= 0 \
+    a &= a'
+  $
+  - $a$ is even but $a'$ is odd:
+  $
+    2(a+a')+ 1+1 = 0 \
+    2(a+a') = -2 \
+    a+a' = -1
+  $
+  No solutions, since $a,a' in NN$.
+  - $a$ is odd but $a'$ is even:
+  $
+    2(-a-a') -1-1 &= 0\
+    -a-a' &= 1 \
+    a+a' &= -1
+  $
+  Analogously as in previous case, no solutions.
+  - both $a,a'$ are odd:
+  $
+    2(-a+a') &= 0 \
+    a &= a'
+  $
+
+  Therefore, the only possible solution is $a=a'$, meaning that $f(a) = f(a') => a=a'$. Thus, $f$ is injective.
+
+  2. *Surjectivity:*
+  Let $b in ZZ$. We are looking for $a in NN$, such as $f(a)=b$. Now:
+  $
+    f(a) &= b \
+    ((-1)^a (2a-1)+1)/4 &= b\
+    ((2a-1)+1)/4 = b &or (-(2a-1)+1)/4 &= b \
+    a/2 =b & or (1-a)/2 =b \
+    a = 2b & or a = 1-2b 
+  $
+  We shall see that $f(2b)=f(1-2b)=b$ and $2b$ is a natural number for $b>=1$, while $1-2b$ is a natural number for $b<=0$. Hence, every $b in ZZ$ has an element $a in NN$, therefore $f$ is surjective.
+
+  q.e.d 
+] 
+
+#exercise[Prove that $f: NN times NN -> NN$ defined as $f(m,n)=2^(m-1) (2n-1)$ is bijective.]
+
+#solution[
+  1. *Injectivity:* Let $m,n,m',n' in NN$ and $f(m,n)=f(m',n')$. We shall observe that:
+  $
+    f(m,n) &= f(m',n') \
+    2^(m-1) (2n-1) &= 2^(m'-1) (2n'-1) \
+        2^(m-1 - (m' - 1))  &= (2n'-1)/(2n-1) \
+        2^(m-m') &= (2n'-1)/(2n-1)
+
+  $
+  I could divide by $2n-1$, since for $n in NN$, $2n-1 !=0$. Next, without loss of generality, we shall establish that $m>=m'$. I can do that, since if $m'>m$, then we can rewrite the expression into this:
+  $
+    2^(m'-m) = (2n-1) / (2n'-1)
+  $
+
+  Now, we shall observe that if $m!=m'$, then left-hand side is even, while right-hand side is an odd number divided by an odd number, hence even $=$ odd. It is contradictionary, implying that $m=m'$. If so, then $(2n-1)/(2n'-1)=1$, which is true only if $n=n'$.
+  Therefore, $f(m,n) = f(m',n') => (m=m' and n=n')$, leading to the conclusion that $f$ is injective.
+
+  2. *Surjectivity:* We shall prove stronger statement: every natural number can be represented as $2^k  dot l$, where $k in NN union {0}$ and $l$ is an odd natural number.
+  Firstly, we will establish that every odd number can be represented as $2^k dot l$. If $k=1$, then $2^k dot l = l$ which is by defintion any possible odd natural number. Then, we shall show that every even number can be represented as $2^k dot l$. Suppose opposite, that there exists such even number $a$ for which $2^k dot l != a$. However, by fundamental theorem of arithmetics, both sides of the inequality can be factorized into the prime number product.
+  Since $a$ is even, then $a=2^m dot p_1 ^ a_1 dot p_2 ^ a_2 dots$. Now, since every prime number except $2$ is odd, then their product is odd as well. Hence, it exists such odd number $l$, which equals $p_1 ^a_1 p_2^a_2 dots$ and so on. Therefore, statement is contradictory and every even number can be also represented as $2^k dot l$.
+
+  Back to the function $f$. Let $c=2^q l$ for some $q >=0$ and odd $l in NN$. We shall observe that:
+  $
+    f(a,b) &= c \
+    2^(b-1) (2a-1) &= 2^q l => f((l+1)/2,q+1)=c
+  $
+  Therefore, $f$ is surjective.
+
+  $f$ is injective and surjective and thus it is also bijective.
+
+  q.e.d
 ]
