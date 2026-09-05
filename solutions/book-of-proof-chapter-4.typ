@@ -1796,3 +1796,93 @@ Yes, it is necessarily true that either $[a]=[0]$ or $[b]=[0]$.
 
   q.e.d
 ]
+== The Pigeonhole Principle Revisitied
+
+#exercise[Prove that if six integers are chosen at random, then at least two of them will have the same remainder when divided by 5.]
+
+#proof[
+  Let $A subset NN$ such that $|A|=6$. Consider the function $f:A -> ZZ_5$ defined by $f(x) = x mod 5$. Since $|A|>|ZZ_5|$, then $f$ is not injective and hence, there exist such $a,b in A$ for which $f(a)=f(b)$ and hence, $a equiv b pmod(5)$.
+
+]
+
+#exercise[Prove that if $a$ is a natural number, then there exist two unequal natural numbers $k$ and $l$ for which $a^k - a^l$ is divisible by $10$.]
+
+#proof[
+  Fix $a in NN$ and let $A={a,a^2,a^3,a^4,dots}$. Consider the function $f: A-> ZZ_10$ defined by $f(x)=x mod 10$. We know for sure, that $f$ cannot be injective, since $|A|>|ZZ_10|$. Now, if so, then exists $k, l in NN$, for which $f(a^k)=f(a^l)$. We shall use this fact to show that:
+  $
+    f(a^k) = f(a^l) &iff a^k mod 10 = a^l mod 10 \
+    & iff a^k equiv a^l pmod(10) \
+    & iff 10 divides (a^k - a^l)
+  $
+]
+
+#exercise[Prove that for any six integers, $9$ divides the sum or difference of two of them.]
+
+#proof[
+Working on modulo $9$, we shall divide $ZZ_9$ into $5$ equivalence classes on relation $tilde$. Those are:
+$
+  [0] &= {0}, \
+  [1] &= {1,8}, \
+  [2] &= {2,7}, \
+  [3] &= {3,6}, \
+  [4] &= {4,5},
+$
+Now, let $A subset ZZ$ such that $|A|=6$ and consider $f: A -> ZZ_9 slash tilde$. We shall observe that $|A|>|ZZ_9 slash tilde|$ and hence $f$ is not injective. If so, then subset $A$ contains at least two elements from one equivalence class. If so, then there are two cases:
+Either those two remainders are equal or they are not. If they are equal, then their difference is divisible by $9$. Otherwise, their sum is divisible by $9$. Regardless of the case, $9$ divides the sum or difference of two elements from set $A$.
+
+]
+
+#exercise[Consider a square whose side-length is one unit. Select any five points from inside the square. Prove that at least two of these points are within $sqrt(2)/2$ units of each other.]
+
+#proof[
+  We know for sure that at least two points inside the square are within $sqrt(2)$ units of each other, since those are two opposite points on diagonal. Now, if we divide the square into 4 smaller squares, then selecting any $5$ points from the initial square will result in selecting at least two inside smaller square. This smaller square diagonal equals $sqrt(2)/2$, thus those two points are within this distance.
+
+]
+
+#exercise[Prove that any set of seven distinct integers contains a pair of integers whose sum or difference is divisible by $10$.]
+
+#proof[
+  Working on modulo $10$, we shall divide $ZZ_10$ into $5$ equivalence classes on relation $tilde$. Those are:
+  $
+    [0] &= {0}, \
+    [1] &= {1,9}, \
+    [2] &= {2,8}, \
+    [3] &= {3,7}, \
+    [4] &= {4,6}, \
+    [5] &= {5}
+  $
+  Now, if we select two numbers from each equivalence class, they will either sum up to $10$ or their difference will be equal $0$, hence it will be divisible by $10$.
+
+  Let $A subset ZZ$ such that $|A|=7$. Consider the function $f: A -> ZZ_10 slash tilde$. Since $|A|>|ZZ_10 slash tilde$, then $f$ is not injective. This means that at least two elements from the set $A$ maps to the same equivalence class. Hence, if we select $7$ random integers, two of those integers will belong to the same equivalence class and thus their sum or difference will be divisible by $10$.
+]
+
+#exercise[
+  Given a sphere $S$, a _great circle_ of $S$ is the intersection of $S$ with a plane through its center. Every great circle divides $S$ into two parts. A hemisphere is the union of the great circle and one of these two parts. Prove that if five points are place arbitrarily on $S$, then there is a hemisphere that contains four of them.
+]
+
+#proof[
+  Fix five points on the sphere $S$. Two points and the center of the sphere $S$ forms a great cirlce, dividing sphere into two parts. Remaining three points are distributed among those two parts. By the Pigeonhole principle one part contains two points hence, its hemisphere contains those two points and another two on the great circle. In total, it contains at least four points.
+]
+
+#exercise[
+  Prove or disprove: Any subset $X subset.eq {1,2,3,dots,2n}$ with $|X|>n$ contains two (unequal) elements of which one divides the other.
+]
+
+#proof[
+  Let $U={1,2,3,dots,2n}$ and $X subset.eq U$ where $|X|>n$. Suppose an equivalence relation $tilde$ defined as:
+  $
+    a tilde b iff (exists k in ZZ, quad a / b= 2^k)
+  $
+  Such equivalence relation is possible, since every $x in U$ can be uniquely written as $x = 2^k dot m$ for $k>=0$ and odd $m$. Now, consider the function $f: X -> U slash tilde$. Observe, that by defintion of $tilde$, every odd number has its own equivalence class. If so, then there is $(|U|)/2$ equivalence classes on $U$ and since $|U|=2n$, then there are $n$ equivalence classes.Therefore $|X|>n=|U slash tilde|$ and if so, then $f$ is not injective. Therefore, exists $a,b in X$ such that $a tilde b$. We shall observe that:
+  $
+    a tilde b & iff exists k in ZZ, quad a/b = 2^k \
+  $
+  Since $a,b in U$, then without loss of generality:
+  $
+    a tilde b & ==> exists k in NN, quad a/b = 2^k \
+    & iff exists k in NN quad a = 2^k b \
+    & ==> b divides a
+  $
+
+  Hence, by Pigeonhole principle there exist such $a,b in X$ for which $b divides a$.
+]
