@@ -1,8 +1,8 @@
 #import "/templates/preamble.typ": *
 
-= Functions
+== Functions
 
-== Injective and Surjective Functions
+=== Injective and Surjective Functions
 
 #exercise[Let $A={1,2,3,4}$ and $B={1,2,3}$. Give an example of function $f: A->B$ that is neither injetive nor surjective.]
 
@@ -472,7 +472,7 @@
 
   q.e.d
 ]
-== The Pigeonhole Principle Revisitied
+=== The Pigeonhole Principle Revisitied
 
 #exercise[Prove that if six integers are chosen at random, then at least two of them will have the same remainder when divided by 5.]
 
@@ -563,7 +563,7 @@
   Hence, by Pigeonhole principle there exist such $a,b in X$ for which $b divides a$.
 ]
 
-== Composition
+=== Composition
 #exercise[
   1. Suppose $A = {5,6,8}, B= {0,1}, C= {1,2,3}$. Let $f: A-> B$ be the funciton $f = {(5,1),(6,0),(8,1)}$, and $g: B->C$ be $g={(0,1),(1,1)}$. Find $g compose f$
 ]

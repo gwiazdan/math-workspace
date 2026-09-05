@@ -1,7 +1,7 @@
 #import "/templates/preamble.typ": *
-= 1. Relations
+== 1. Relations
 
-== Relations
+=== Relations
 #exercise[Let $A={0,1,2,3,4,5}$. Write out the relation $R$ that expresses $>$ on $A$. Then illustrate it with a diagram.]
 
 #solution[
@@ -345,7 +345,7 @@
 ]
 #solution[This relation is $x equiv y pmod(3)$.]
 
-== Properties of Relations
+=== Properties of Relations
 
 #exercise[Consider the relation $R={(a,a),(b,b),(c,c),(d,d),(a,b),(b,a)$ on set $A={a,b,c,d}$. Is $R$ reflexive? Symmetric? Transitive? If a property does not hold, say why.]
 
@@ -770,7 +770,7 @@
   ]
 ]
 
-== Equivalence Relations
+=== Equivalence Relations
 
 #exercise[Let $A={1,2,3,4,5,6}$, and consider the following equivalence relation on $A$: $R={(1,1),(2,2),(3,3),(4,4),(5,5),(6,6)),(2,3),(3,2),(4,5),(5,4),(4,6),(6,4),(5,6),(6,5)}$. List the equivalence classes of $R$.]
 
@@ -1037,7 +1037,7 @@
   q.e.d
 ]
 
-== Equivalence Classes and Partitions
+=== Equivalence Classes and Partitions
 
 #exercise[List all the partitions of the set $A={a,b}$. Compare your answer to Exercise 1.37.]
 
@@ -1108,7 +1108,7 @@
 
 #solution[This relation is $x R y iff |x|=|y|$.]
 
-== The Integers Modulo n
+=== The Integers Modulo n
 
 #exercise[Write the addition and multiplication tables for $ZZ_2$.]
 

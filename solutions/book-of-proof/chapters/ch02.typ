@@ -1,5 +1,8 @@
 #import "/templates/preamble.typ": *
-= Proof by Contradiction
+
+= II How to Prove Conditional Statements
+
+== Proof by Contradiction
 
 + Prove the following statements using any method from Chapters 4,5 or 6.
 #exercise[We say that a point $P=(x,y)$ in $RR^2$ is rational if both $x and y$ are rational. More precisely, $P$ is rational if $P=(x,y)in QQ^2$, An equation $F(x,y)=0$ is said to have a rational point if there exists $x_0,y_0 in QQ$ such that $F(x_0,y_0)=0$. For example the curve $x^2+y^2-1=0$ has rational point $(x_0,y_0)=(1,0)$. Show that the curve $x^2+y^2-3=0$ has no rational points.]

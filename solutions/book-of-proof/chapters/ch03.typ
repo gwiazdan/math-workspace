@@ -1,5 +1,8 @@
 #import "/templates/preamble.typ": *
-= Proving Non-Conditional Statements
+
+= III More on Proof
+
+== Proving Non-Conditional Statements
 
 #exercise[Suppose $a in ZZ$, then $x$ is even if and only if $3x+5$ is odd.]
 
@@ -581,7 +584,7 @@
   q.e.d
 ]
 
-= Proofs Involving Sets
+== Proofs Involving Sets
 
 #exercise[Prove that ${12n: n in ZZ} subset.eq {2n: n in ZZ} inter {3n: n in ZZ}$.]
 
@@ -1006,7 +1009,7 @@
   q.e.d
 ]
 
-= Disproof
+== Disproof
 
 #exercise[If $x,y in RR$, then $|x+y|=|x|+|y|$.]
 #solution[Suppose that $|x+y|=|x|+|y|$.
@@ -1326,7 +1329,7 @@
 
 #solution[No, suppose $n=11$ for which $2^n-1$ equals $2047$, which is a composite number since $2047=23 dot 89$. ]
 
-= Mathematical Induction
+== Mathematical Induction
 
 #exercise[Prove that $1+2+3+4+...+n=(n^2+n)/2$ for every positive integer $n$.]
 
