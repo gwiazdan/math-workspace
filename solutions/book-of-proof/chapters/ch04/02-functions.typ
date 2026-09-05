@@ -671,3 +671,39 @@
   $
 ]
 
+=== Inverse Functions
+
+#exercise[
+  Check that $f: ZZ-> ZZ$ defined by $f(n)=6-n$ is bijective. Then compute $f^(-1)$.
+]
+
+#solution[
+  1. *Injectivity:* Let $a,a' in ZZ$ and $f(a)=f(a')$. We shall observe that:
+  $
+    f(a) = f(a') & iff 6-a = 6-a' \
+                 & iff a = a'
+  $
+  Hence, $f$ is injecitve.
+
+  2. *Surjectivity:* Fix $b in ZZ$. Observe that for $a in ZZ$:
+  $
+    f(a) = b & ==> 6-a = b \
+             & ==> 6-b = a \
+             & ==> f(6-b) = b
+  $
+  Since, $6-b in ZZ$, then $f$ is surjective.
+
+  Therfore, $f$ is bijective. Now, since $f(6-x)=x$ and $f(x)=6-x$, then $f(f(x))=x$, leading to the conclusion that $f^(-1)=f$ and $f^(-1)(x)=6-x$.
+]
+
+#exercise[
+  We proved that $f: RR \\ {2} -> RR \\{5}$ defined by $f(x)=(5x+1)/(x-2)$ is bijective. Now find $f^(-1)$.
+]
+
+#solution[
+  $
+                     f(x) & = (5x+1)(x-2) \
+    (f compose f^(-1))(x) & = (5f^(-1)(x)+1))(f^(-1)(x)-2) \
+                        x & = ()
+  $
+]
