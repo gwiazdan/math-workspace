@@ -8,6 +8,8 @@
   numbering: "A.",
 )
 
+#let proof = proof.with(qed: sym.square.filled)
+
 #let pmod-spacing = state("pmod-spacing", 2em / 9)
 
 #show math.equation.where(block: true): it => {

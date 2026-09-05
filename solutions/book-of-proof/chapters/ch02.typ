@@ -1,15 +1,4 @@
 #import "/templates/preamble.typ": *
-
-// 1. COVER PAGE AND CONFIGURATION
-#show: euler-math.with(
-  title: [Chapter 2: How to Prove Conditional Statements ],
-  subtitle: [Book of Proof -- Richard Hammack],
-  author: [Norbert Gwiazda],
-)
-
-#pagebreak()
-
-
 = Proof by Contradiction
 
 + Prove the following statements using any method from Chapters 4,5 or 6.

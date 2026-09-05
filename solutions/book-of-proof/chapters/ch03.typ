@@ -1,14 +1,4 @@
-#import "../templates/preamble.typ": *
-
-// 1. COVER PAGE AND CONFIGURATION
-#show: euler-math.with(
-  title: [Chapter 3: More on Proof ],
-  subtitle: [Book of Proof -- Richard Hammack],
-  author: [Norbert Gwiazda],
-)
-
-#pagebreak()
-
+#import "/templates/preamble.typ": *
 = Proving Non-Conditional Statements
 
 #exercise[Suppose $a in ZZ$, then $x$ is even if and only if $3x+5$ is odd.]
