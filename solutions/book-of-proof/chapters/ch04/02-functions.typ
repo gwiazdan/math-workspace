@@ -1,4 +1,5 @@
 #import "/templates/preamble.typ": *
+
 = Functions
 
 == Injective and Surjective Functions
@@ -625,3 +626,48 @@
     & f compose g = f(g(x)) = root(3, x^3+1)
   $
 ]
+
+#exercise[
+  Consider the functions $f,g: RR -> RR$ defined as $f(x)=1/(x^2+1)$ and $g(x)=3x+2$. Find the formulas fo $g compose f$ and $f compose g$.
+]
+
+#solution[
+  $
+    & g compose f = g(f(x)) = 3(1/(x^2+1))+2 = 3/(x^2+1) +2 \
+    \
+    & f compose g = f(g(x)) = 1/((3x+2)^2+1) = 1/(9x^2+12x+5)
+  $
+]
+
+#exercise[
+  Consider the functions $f,g: ZZ times ZZ -> ZZ times ZZ$ defined as $f(m,n)=(m n, m^2)$ and $g(m,n)=(5m+n,m)$. Find the formulas for $g compose f$ and $f compose g$.
+]
+
+#solution[
+  $
+    & g compose f = g(f(m,n)) = g(m n,m^2) = (5(m n) + m^2, m n) = (5m n + m^2, m n) \
+    \
+    & f compose g = f(g(m,n)) = f(5m+n,m) = ((5m+n)m, (5m+n)^2) = (5m^2 + m n, 25m^2+10m n + n^2)
+  $
+]
+
+#exercise[Consider the functions $f: ZZ times ZZ -> ZZ$ defined as $f(m,n)=m+n$ and $g: ZZ-> ZZ times ZZ$ defined as $g(m)=(m,m)$. Find the formulas for $g compose f$ and $f compose g$.]
+
+#solution[
+  $
+    g compose f & =g(f(m,n)) = g(m+n) = (m+n,m+n) \
+                \
+    f compose g & = f(g(m)) = f(m,m) = m+m = 2m
+  $
+]
+
+#exercise[
+  Consider the functions $f: RR^2->RR^2$ defined by the formula $f(x,y)=(x y, x^3)$. Find a formula for $f compose f$.
+]
+
+#solution[
+  $
+    f compose f = f(f(x,y)) = f(x y, x^3) = ((x y) x^3, (x y)^3) = (x^4 y, x^3 y^3)
+  $
+]
+
