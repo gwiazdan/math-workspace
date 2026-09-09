@@ -702,8 +702,158 @@
 
 #solution[
   $
-                     f(x) & = (5x+1)(x-2) \
-    (f compose f^(-1))(x) & = (5f^(-1)(x)+1))(f^(-1)(x)-2) \
-                        x & = ()
+                     f(x) & = (5x+1)/(x-2) \
+    (f compose f^(-1))(x) & = (5f^(-1)(x)+1)/(f^(-1)(x)-2) \
+                        x & = (5f^(-1)(x)-10 + 11)/(f^(-1)(x)-2) \
+                        x & = 5 + 11 / (f^(-1)(x)-2) \
+                    x - 5 & = 11 /(f^(-1)(x)-2) \
+              f^(-1)(x)-2 & = 11 / (x-5) \
+                f^(-1)(x) & = (11 + 2(x-5)) / (x-5) \
+                f^(-1)(x) & = (2x+1) / (x-5)
+  $
+]
+
+#exercise[
+  Let $B={2^n: n in ZZ} == {dots, 1/4,1/2,1/,2,4,8,dots$. Show that the function $f:ZZ->B$ defined as $f(n)=2^n$ is bijective. Then find $f^(-1)$.
+]
+
+#solution[
+  1. *Injectivity:* Let $a, a' in ZZ$ and $f(a)=f(a')$. Since $f(a)=f(a')$, then $2^a=2^a'$ and hence, $a=a'$. If so, then $f$ is injective.
+
+  2. *Surjecivity:* Let $b in B$. We seek $a in ZZ$ for which $f(a)=b$. We shall observe that:
+  $
+    f(a) & = b \
+     2^a & = b \
+       a & = log_2(b)
+  $
+  Since $log_2(b) in ZZ$ for $b in B$, then $f(log_2(b))=b$ and $f$ is surjective.
+
+  As $f$ is both surjective nad injective, then it is bijective.
+
+
+  We shall now find inverse of $f$. Since $f(log_2(b))=b$, then $f^(-1)(x)=log_2(x)$.
+]
+
+#exercise[The function $f: RR-> (0,infinity)$ defined as $f(x)=e^(x^3+1)$ is bijective. Find its inverse.]
+
+#solution[
+  $
+    f(x) = e^(x^3+1) & iff x = e^((f^(-1)(x))^3+1) \
+                     & iff ln(x) = (f^(-1)(x))^3+1 \
+                     & iff (f^(-1)(x))^3 = ln(x)-1 \
+                     & iff f^(-1)(x) = root(3, ln(x)-1)
+  $
+  Hence, $f^(-1)(x) = root(3, ln(x)-1)$.
+]
+
+#exercise[The function $f: RR-> RR$ defined as $f(x)=pi x - e$ is bijective. Find its inverse.]
+
+#solution[
+  $
+          f(x) & = pi x - e \
+             x & = pi f^(-1) (x) - e \
+         x + e & = pi f^(-1) (x) \
+    f^(-1) (x) & = (x+e)/pi
+  $
+]
+
+#exercise[The function $f: ZZ times ZZ -> ZZ times ZZ$ defined by the formula $f(m,n)=(5m+4n, 4m+3n)$ is bijective. Find its inverse.]
+
+#solution[
+  $
+    f(m,n) = (5m+4n,4m+3n) & iff f^(-1)(5m+4n,4m+3n) = (m,n) \
+                           &
+  $
+  Let $x = 5m+ 4n$ and $y=4m+3n$. If so, then:
+  $
+    cases(x=5m+4n, y=4m+3n) => cases(x-y=m+n, y=4m+3n) => cases(x-y=m+n, y-3(x-y)=n) => cases(4x+y=m, -3x-2y=n)
+  $
+
+  Therefore, $f^(-1)(m,n)=(4m+n,-3m-2n)$.
+]
+
+#exercise[Show that the function $f: RR^2->RR^2$ defined by the formula $f(x,y)=((x^2+1)y,x^3)$ is bijective; find its inverse.]
+
+#solution[
+  1. *Injectivity:* Let $x,y,x',y' in RR$ and $f(x,y) = f(x',y')$. Now:
+  $
+    f(x,y) = f(x',y') & iff ((x^2+1)y,x^3) = ((x'^2+1)y',x'^3) \
+                      & iff (x^2+1)y=(x'^2+1)y' and x^3=x'^3 \
+                      & iff x=x' and cancel((x^2+1))y = cancel((x^2+1))y' \
+                      & iff x=x' and y=y'
+  $
+  Hence, $f$ is injective.
+
+  2. *Surjectivity:* Let $(c,d) in RR^2$. We seek $(a,b) in RR^2$ for which $f(a,b) = (c,d)$. We shall observe that:
+  $
+    f(a,b) = (c,d) & iff ((a^2+1)b, a^3) = (c,d) \
+                   & iff (a^2+1)b = c and a^3 = d \
+                   & iff a = root(3, d) and ((root(3, d))^2+1)b = c \
+                   & iff a = root(3, d) and b = c/((root(3, d))^2+1) \
+                   & iff f(root(3, d),c/(root(3, d^2)+1)) = (c,d)
+  $
+  Since $root(3, d^2)+1!=0$, then $c/root(3, d^2)+1) in RR$. As both $root(3, d)$ and $c/(root(3, d^2)+1)$ are real numbers, then $f$ is surjective.
+
+  Hence, since $f(root(3, y),x/(root(3, y^2)+1)) = (x,y)$ and $f(f^(-1)(x,y))=(x,y)$, then $f^(-1)$ is defined as
+  $
+    f^(-1)(x,y)=(root(3, y),x/(root(3, y^2)+1))
+  $
+]
+
+#exercise[Is the function $theta: cal(P)(ZZ) -> cal(P)(ZZ)$ defined as $theta(X) = overline(X)$ bijective? If so, find $theta^(-1)$.]
+
+#solution[
+  1. *Injectivity:* Let $X,X' in cal(P)(ZZ)$ and $theta(X)=theta(X')$. We shall also establish universal set $U$. Observe that:
+  $
+    theta(X)=theta(X') iff U \\ X = U \\ X' iff U \\ (U \\ X) = U \\ (U \\ X') iff X = X'
+  $
+  Hence, $theta$ is injective.
+
+  2. *Surjectivity:* Let $Y in cal(P)(ZZ)$. We seek $X in cal(P)(ZZ)$ for which $theta(X)=Y$. Now:
+  $
+    theta(X) = Y & iff overline(X) = Y \
+                 & iff U \\ X = Y \
+                 & iff U \\ (U \\ X) = U \\ Y \
+                 & iff X = U \\ Y \
+                 & iff theta(overline(Y)) = Y
+  $
+  Since $overline(Y) in cal(P)(ZZ)$, then $theta$ is surjective.
+
+  As $theta$ is both surjective and injective, then it is bijective. To find $theta^(-1)$, we shall use the fact that $theta(overline(X)) = X$ for every $X in cal(P)(ZZ)$. If so, then $(theta compose theta^(-1))(overline(X))= theta^(-1)(X)$ and hence, $theta^(-1)(X)=overline(X)$.
+]
+
+#exercise[Consider the function $f:RR times NN -> NN times RR$ defined as $f(x,y)=(y,3x y)$. Check that his is bijective; find its inverse.]
+
+#solution[
+  1. *Injectivity:* Let $a,a' in RR$ and $b,b' in NN$. Suppose also that $f(a,b)=f(a',b')$. Observe that:
+  $
+    f(a,b) = f(a',b') & iff (b,3a b) = (b', 3a' b') \
+                      & iff b = b' and 3a b = 3a' b' \
+                      & iff b = b' and cancel(3b) a = cancel(3b) a' \
+                      & iff b = b' and a = a'
+  $
+  Hence, $f$ is injective.
+
+  2. *Surjectivity:* Let $(c,d) in NN times RR$. We seek $(a,b) in RR times NN$ for which $f(a,b) = (c,d)$. Now:
+  $
+    f(a,b) = (c,d) & iff (b, 3 a b) = (c,d) \
+                   & iff c = b and d = 3a b \
+                   & iff b = c and a = d/3c \
+                   & iff f(d/3c,c) = (c,d)
+  $
+  Since $b in NN$, then $c in NN$ as well. On the other hand, since $c != 0$, then $d/3c in RR$ and hence $a in RR$. It is true therefore that $f$ is surjective.
+
+  As $f$ is both injective and surjective, then it is bijective and since $f(y/3x,x) = (x,y)$, then $f^(-1)(x,y)=(y/3x,x)$.
+]
+
+#exercise[Consider $f: NN -> ZZ$ defined as $f(n)=((-1)^n (2n-1)+1)/4$. This function is bijective by Exercise 18 in Section 12.2. Find its inverse.]
+
+#solution[
+  $
+    f(n)=((-1)^n (2n-1)+1)/4 & = cases(n "is even": quad n/2, n "is odd": quad (1-n)/2)
+  $
+  Moreover, we shall see that $(1-n)/2<=0$ for odd numbers while $n/2>0$ for even numbers. We will use this fact, to show that $f^(-1)$ is defined as:
+  $
+    f^(-1)(n) = cases(n>0: quad 2n, n<=0: quad 1-2n)
   $
 ]
