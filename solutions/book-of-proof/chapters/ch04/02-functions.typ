@@ -857,3 +857,222 @@
     f^(-1)(n) = cases(n>0: quad 2n, n<=0: quad 1-2n)
   $
 ]
+
+=== Image and Preimage
+
+#exercise[Consider the function $f: RR->RR$ defined as $f(x)=x^2+3$. Find $f([-3,5])$ and $f^(-1)([12,19])$.]
+
+#solution[
+  To find $f([-3,5])$ we shall observe that:
+  $
+    f([-3,5]) & = f([-3,0] union [0,5]) \
+              & = f([-3,0]) union f([0,5]) \
+              & = {f(x): x in [-3,0]} union {f(x): x in [0,5]} \
+              & = {x^2+3: x in [-3,0]} union {x^2+3: x in [0,5]} \
+              & = [0^2+3,(-3)^2+3] union [0^2+3,5^2+3] \
+              & = [3, 12] union [3,28] \
+              & = [3,28]
+  $
+  Hence, $f([-3,5])=[3,12]$. Now, to find the preimage $f^(-1)([12,19])$ we shall solve this system of inequation:
+  $
+    & cases(x^2+3>=12, x^2+3 <= 19) => cases(x^2>=9, x^2<=16) => cases(x>=3 or x<= -3, x<=4 and x>= -4) &=> x in ((- infinity, -3] union [3, infinity)) inter [-4, 4] \
+    & => x in [-4, -3] union [3,4]
+  $
+  Thus, $f^(-1)([12,19])=[-4,-3] union [3,4]$.
+]
+
+#exercise[Consider the function $f:{1,2,3,4,5,6,7} -> {0,1,2,3,4,5,6,7,8,9}$ given as
+  $
+    f={(1,3),(2,8),(3,3),(4,1),(5,2),(6,4),(7,6)}
+  $
+  Find: $f({1,2,3}), f({4,5,6,7}), f(emptyset), f^(-1)({0,5,9})$ and $f^(-1)({0,3,5,9})$.
+]
+
+#solution[
+  $
+           f({1,2,3}) & = {3,8} \
+         f({4,5,6,7}) & = {1,2,4,6} \
+          f(emptyset) & = emptyset \
+      f^(-1)({0,5,9}) & = emptyset \
+    f^(-1)({0,3,5,9}) & = {1,3}
+  $
+]
+
+#exercise[
+  This problem concerns functions $f: {1,2,3,4,5,6,7} -> {0,1,2,3,4}$. How many such functions have the property that $|f^(-1)({3})|=3$?
+]
+
+#solution[
+  Firstly, establish that $|{1,2,3,...,7}|=7$ and $|{0,1,2,3,4}|=5$. Next, we shall conclude that if $|f^(-1)({3})|=3$, then there are $3$ values in the former set that map to $3$. There are $binom(7, 3)$ ways of choosing those three elements. The remaining $4$ elements of the prior set maps to any of the $4$ elements from the latter set. Hence, there are in total $binom(7, 3) dot 4^4$ such functions.
+]
+
+#exercise[The problem concerns functions $f:{1,2,3,4,5,6,7,8} -> {0,1,2,3,4,5,6}$. How many such functions have the property that $|f^(-1)({2})|=4$?]
+
+#solution[
+  Analogously, establish that $|{1,2,3,...,8}|=8$ and $|{0,1,2,3,4,5,6}|=7$. Then, we shall conclude that $|f^(-1)({2})|=4$ means that $4$ elements from the prior set map to the element $2$ from the latter set. Hence, there are $binom(8, 4)$ ways of choosing those $4$ elements that map to $2$ and $6^4$ ways of mapping remaining elements from the former set to any elements from the second set. Thus, in total there are $binom(8, 4) dot 6^4$ such functions.
+]
+
+#exercise[Consider a function $f:A -> B$ and a subset $X subset.eq A$. We observed that $f^(-1)(f(X))!=X$ in general. However, $X subset.eq f^(-1)(f(X))$ is always true. Prove this.]
+
+#proof[
+  Let $A,B$ be some sets while $X subset.eq A$ and $f: A->B$. Now, let $x in X$ and observe that:
+  $
+    x in f^(-1)(f(X)) & iff x in {y in A: f(y) in {f(z): z in X}} \
+                      & iff x in {y in A: exists_(z in X) f(z) = f(y)} \
+                      & iff x in A and exists_(z in X) f(z) = f(x) \
+  $
+  Both conditions are trivially true and therefore $x in f^(-1)(f(X))$ is true as well. Hence, $X subset.eq f^(-1)(f(X))$.
+]
+
+#exercise[Given a function $f: A -> B$ and a subset $Y subset.eq B$, is $f(f^(-1)(Y))=Y$ always true? Prove or give a counterexample.]
+
+#solution[
+  Let $Y subset.eq B$ and $f:A->B$. Now, we shall see whether $Y subset.eq f(f^(-1)(Y))$:
+  $
+    y in f(f^(-1)(Y)) & iff y in {f(x): x in {y in A: f(y) in Y}} \
+                      & ==> x in {y in A: f(y) in Y} and y=f(x) \
+                      & ==> x in A and f(x) in Y and y = f(x) \
+                      & ==> exists_(x in A) (y = f(x) and f(x) in Y)
+  $
+
+  We failed to prove that $Y subset.eq f(f^(-1)(Y))$, since $Y subset.eq f(f^(-1)(Y))$ implies that $f$ is surjective, which means, that if $f$ is not surjective, then $Y subset.not.eq f(f^(-1)(Y))$ and hence, $f(f^(-1) (Y))!=Y$.
+
+  Suppose therefore that $Y={1,2}$, while $f={(0,3),(1,3)}$. It is easy to show that $f^(-1)(Y)=emptyset$ and $f(f^(-1)(Y))=f(emptyset)=emptyset != Y$.
+
+]
+
+#exercise[Given a function $f: A->B$ and subsets $W,X subset.eq A$, prove $f(W inter X) subset.eq f(W) inter f(X)$.]
+
+#proof[
+  Let $y in f(W inter X)$. Now:
+  $
+    y in f(W inter X) & iff y in {f(x): x in W inter X} \
+                      & iff y in {f(x): x in {z: z in W and z in X}} \
+                      & ==> y in {f(x): x in W and x in X} \
+                      & ==> y in {f(x): x in W} inter {f(x): x in X} \
+                      & ==> y in f(W) inter f(X)
+  $
+  Hence, $f(W inter X) subset.eq f(W) inter f(X)$.
+]
+
+#exercise[Given a function $f: A-> B$ and subsets $W,X subset.eq A$, then $f(W inter X)=f(W) inter f(X)$ is _false_ in general. Produce a counterexample.]
+
+#solution[
+  Let $X= {1,2}, Y={3,4}$ and $f(1)=f(3)$. If so, then $f(X inter Y) = f(emptyset) = emptyset$, while $f(X) inter f(Y) != emptyset$, since $f(1) in f(X) inter f(Y)$.
+]
+
+#exercise[Given a function $f:A->B$ and subsets $W,X subset.eq A$, prove $f(W union X) = f(W) union f(X)$.]
+
+#proof[
+  Let $y in f(W union X)$. Then:
+  $
+    y in f(W union X) & iff y in {f(x): x in W union X} \
+                      & iff y in {f(x): x in {z: z in W or z in X}} \
+                      & iff y in {f(x): x in W or x in X} \
+                      & iff y in {f(x): x in W} union {f(x): x in X} \
+                      & iff y in f(W) union f(X) \
+  $
+
+  Bi-directional implication shows that $f(W union X) subset.eq f(W) union f(X)$ and $f(W) union f(X) subset.eq f(W union X)$, therefore both sets are equal.
+]
+
+#exercise[Given $f:A->B$ and subsets $Y,Z subset.eq B$, prove $f^(-1)(Y inter Z)=f^(-1)(Y) inter f^(-1)(Z)$.]
+
+#proof[
+  Let $y in f^(-1)(Y inter Z)$. We shall observe that:
+  $
+    y in f^(-1)(Y inter Z) & iff y in {x in A: f(x) in Y inter Z} \
+                           & iff y in {x in A: f(x) in Y and f(x) in Z} \
+                           & iff y in {x in A: f(x) in Y} inter {x in A: f(x) in Z} \
+                           & iff y in f^(-1)(Y) inter f^(-1)(Z)
+  $
+  By bi-directional implication both $f^(-1)(Y inter Z) subset.eq f^(-1)(Y) inter f^(-1)(Z)$ and $f^(-1)(Y) inter f^(-1)(Z) subset.eq f^(-1)(Y inter Z)$ are true. Hence, both sets are equal.
+]
+
+#exercise[Given $f: A->B$ and subsets $Y,Z subset.eq B$, prove $f^(-1)(Y union Z) = f^(-1)(Y) union f^(-1)(Z)$.]
+
+#solution[
+  Let $y in f^(-1)(Y union Z)$. Now:
+  $
+    y in f^(-1)(Y union Z) & iff y in {x in A: f(x) in Y union Z} \
+                           & iff y in {x in A: f(x) in Y or f(x) in Z} \
+                           & iff y in {x in A: f(x) in Y} union {x in A: f(x) in Z} \
+                           & iff y in f^(-1)(Y) union f^(-1)(Z)
+  $
+  Hence, sets $f^(-1)(Y union Z)$ and $f^(-1)(Y) union f^(-1)(Z)$ are both subsets to each other and hence they are equal.
+]
+
+#exercise[Consider $f:A->B$. Prove that $f$ is injective if and only if $X=f^(-1)(f(X))$ for all $X subset.eq A$. Prove that $f$ is surjective if and only if $f(f^(-1)(Y))=Y$ for all $Y subset.eq B$.]
+
+#proof[
+  $
+    f(f^(-1)(Y)) subset.eq Y
+  $
+
+  1. *Injectivity:*
+  We use standard inclustion $X subset.eq f^(-1)(f(X))$ for all $X subset.eq A$. For both sets $X$ and $f^(-1)(f(X))$ to be equal, latter should be included in the former. Hence, we shall prove this inclusion. Suppose that $x in f^(-1)(f(X))$. We shall observe that:
+  $
+    x in f^(-1)(f(X)) & iff x in {y in A: f(y) in {f(z): z in X} \
+                      & ==> x in A and exists_(z in X) thick f(x) = f(z) \
+                      & ==> exists_(z in X) thick f(x) = f(z)
+  $
+  If $f$ is injective, then $f(x) = f(z) => x=z$, hence:
+  $
+    x in f^(-1)(f(X)) & ==> exists_(z in X) thick f(x) = f(z) \
+                      & ==> x in X
+  $
+  Meaning that if $f$ is injective, then $f^(-1)(f(X)) subset.eq X$ and $f^(-1)(f(X)) = X$.
+
+  On the other hand, let $f^(-1)(f(X)) = X$. Suppose also that $X={x_1}$. Then $f(X) = {f(x_1)}$. Now: $f^(-1)(f(X)) = {y in A: f(y)=f(x_1)}$. Since by initial assumption, $f^(-1)(f(X)) = X$, then ${y in A: f(y)=f(x_1)}={x_1}$, hence for $x,x' in A$, $f(x) = f(x') => x=x'$, meaning that $f$ is injective.
+
+
+  Thus, there is a bi-directional implication of $f$ being injective and $f^(-1)(f(X)) = X$.
+
+  2. *Surjectivity:* Let $y in Y$. Now:
+  $
+    y in f(f^(-1)(Y)) & iff y in {f(x): x in {z in A: f(z) in Y}} \
+                      & iff y in {f(x): x in A and f(x) in Y} \
+                      & iff exists_(x in A) thick (y = f(x) and f(x) in Y)
+  $
+  We know for sure that if $f(x)=y$ and $y in Y$, then $f(x) in Y$. The other condition is true if and only if $f$ is surjective. Hence, $Y subset.eq f(f^(-1)(Y))$ if and only if $f$ is surjective and moreover, $Y = f(f^(-1)(Y))$ if and only if $f$ is surjective.
+]
+
+#exercise[Let $f:A->B$ be a function, and $X subset.eq A$. Prove or disprove: $f(f^(-1)(f(X)))=f(X)$.]
+
+#proof[
+  Observe that:
+  $
+    y in f(f^(-1)(f(X))) & iff y in {f(x): x in {z in A: f(z) in {f(omega): omega in X} }} \
+                         & iff y in {f(x): x in A and f(x) in {f(omega): omega in X}} \
+                         & iff y in {f(x): x in A and exists_(omega in X) thick f(x)=f(omega)} \
+                         & iff exists_(x in A) thick f(x)=y and exists_(omega in X) thick f(x) = f(omega) \
+                         & iff exists_(x in A) thick f(x)=y and exists_(omega in X) thick y = f(omega)
+  $
+  Now, the second condition implies the first condition. Moreover, predicate $exists_(omega in X) thick y = f(omega)$ is identitcal to the statement $y in f(X)$.
+  Hence,
+  $y in f(f^(-1)(f(X))) iff y in f(X)$.
+
+  Thus, $f(f^(-1)(f(X))) subset.eq f(X)$ and $f(f^(-1)(f(X)))$, meaning that $f(f^(-1)(f(X)))=f(X)$.
+
+]
+
+#exercise[Let $f: A->B$ be a function, and $Y subset.eq B$. Prove or disprove: $f^(-1)(f(f^(-1)(Y)))=f^(-1)(Y)$]
+
+#proof[
+  Observe that:
+  $
+    x in f^(-1)(f(f^(-1)(Y))) & iff x in {y in A: f(y) in {f(z): z in {omega in A: f(omega) in Y }}} \
+                              & iff x in A and thick f(x) in {f(z): z in A and f(z) in Y} \
+                              & iff exists_(z in A) thick (f(x) = f(z) and f(z) in Y)
+  $
+  By the transitivity of equality, $f(x)=f(z)$ and $f(z in Y)$ implies that $f(x) in Y$. The converse holds trivially by choosing $z=x$.
+  $
+    x in f^(-1)(f(f^(-1)(Y))) iff exists_(x in A) (f(x) = f(x) and f(x) in Y)
+  $
+  Which basically means that:
+  $
+    x in f^(-1)(f(f^(-1)(Y))) iff x in f^(-1)(Y)
+  $
+
+  Therefore, every element from the set $f^(-1)(f(f^(-1)(Y)))$ belongs to set $f^(-1)(Y)$ and vice versa. Hence, both sets are subsets of each other and they are equal.
+]
