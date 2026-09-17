@@ -87,3 +87,78 @@
 
   Let $delta = min(1, epsilon/12)$. Then $0<abs(x-1)<delta$ implies that $abs((4x^2+1)-5)=4abs(x-1) abs(x+1) < 12 delta = epsilon$. By definition of the limit, $limits(lim)_(x->1)(4x^2+1)=5$.
 ]
+
+=== Limits That Do Not Exist
+
+Prove that the following limits do not exist.
+
+#exercise[$limits(lim)_(x->0) log_10 abs(x)$]
+
+#proof[
+  Suppose limit does exist. Let $epsilon = 1$, $L in RR$ and $limits(lim)_(x->0) log_10 abs(x) = L$.
+
+  By definition of the limit, there is real number $delta>0$ for which $0 < abs(x) < delta$ implies $abs(log_10 abs(x) - L) < 1$.
+
+  Let $a = 0 + delta/10$ and $b = 0 + delta/1000$. Therefore, $0< abs(a) <delta$ and $0< abs(b) < delta$. Now, since the limit exist, then $abs(f(a) - L) < 1$ and $abs(f(b) - L) < 1$.
+
+  Hence, by triangle inequality $abs((f(a)-L) - (f(b)-L)) <= abs(f(a) - L) + abs(f(b) - L)$. We shall use this fact, to show that $abs((f(a)-L)-(f(b)-L))=abs(f(a)-f(b))=abs(log_10(delta)-log_10(10) - log_10(delta) + log_10(1000))=abs(-1+3)=2$. We know also that $abs(f(a)-L) + abs(f(b)-L) < 2$.
+
+  Thus, $2<abs(f(a)-L)+abs(f(b)-L)<2$ and it contradictswith the definition of the limit. Therefore, limit does not exist.
+]
+
+#exercise[$limits(lim)_(x->0) abs(x)/x$]
+
+#proof[
+  Suppose limit does exist. Let $epsilon=1$, $L in RR$ and $limits(lim)_(x->0) abs(x) /x = L$.
+
+  Let $delta>0$ for which $0 < abs(x) < delta$. By definition of the limit, $0 < abs(x) < delta$ implies $0 < abs(f(x)-L) < epsilon$.
+
+  Hence, choosing $a,b$ such that $a=delta/2$, $b=-delta/2$ and both $a,b$ satisfy inequalities $0<abs(a)< delta$, $0 < abs(b) < delta$, it holds that $abs(f(a)-L) < epsilon$ and $abs(f(b)-L) < epsilon$.
+
+  Now, using triangle inequality, we shall state that:
+  $
+    abs((f(a)-L) - (f(b)-L)) & <= abs(f(a)-L) + abs(f(b)-L) \
+              abs(f(a)-f(b)) & <= abs(f(a)-L) + abs(f(b)-L)
+  $
+
+  Then, we shall notice that $abs((f(a)-f(b))) = abs(abs(delta/2)/(delta/2) - abs(-delta/2)/(-delta/2))=abs(1+1)=2$ as well as take in mind that $abs(f(a)-L) + abs(f(b)-L) < 2 epsilon$.
+
+  Therefore:
+  $
+    2 = abs(f(a)-f(b)) <= abs(f(a)-L) + abs(f(b)-L) < 2 \
+    2 < 2
+  $
+  Which leads us to contradiction. Thus, such limit does not exist.
+]
+
+#exercise[$limits(lim)_(x->0) 1/x^2$]
+
+#proof[
+  Suppose that limit exists and $limits(lim)_(x->0) 1/x^2 = L$. Fix $epsilon >0$ such that $L+epsilon > 0$. Choose a real number $delta >0$ for which $0 < abs(x-0) < delta$ implies $abs(1/x^2-L)<epsilon$. Choose an $x<min(delta, sqrt(1/(L+epsilon)))$. Then $0<abs(x-0)<delta$, so $abs(1/x^2-L)<epsilon$. But also, $x < sqrt(1/(L+epsilon))$, so $x^2 < 1/(L+epsilon)$ and hence $1/x^2>L+epsilon$. Therefore $1/x^2-L > epsilon$, and thus $abs(1/x^2-L)>epsilon$. This is a contradiction.
+]
+
+#exercise[$limits(lim)_(x->0) cos(1/x)$]
+
+#proof[
+  Suppose that limit exists and $limits(lim)_(x->0) cos(1/x)=L$. Choose $epsilon=1/2$. Definition gurantees a number $delta$ for which $0<abs(x-0)<delta$ implies $abs(f(x)-L)<epsilon$. Thus, we shall select $k in NN$ large enough so that $1/(2 k pi) < delta$. As $0< abs(1/(2 k pi)) < delta$, then $abs(f(1/(2 k pi))-L) < epsilon$. Similarly, if we choose $l in NN$ large enough so that $1/(pi slash 2 + 2 l pi) < delta$, then $0<abs(1/(pi slash 2 + 2 l pi))< delta$ implies that $abs(f(1/(pi slash 2+2 l pi))-L)< epsilon$.
+
+  Now, since $f(1/(1 slash 2 k pi)) = cos(2 k pi) = 1$ and $f(1/(1 slash (pi/2 + 2 l pi)))= cos(pi/2 + 2l pi) = 0$, then both $abs(0 - L) < epsilon$ and $abs(1 - L) < epsilon$ holds.
+
+  By triangle inequality, $abs((1-L) +L) <= abs(1-L)+ abs(L)$. Since $abs(1-L + L) = 1$ and $abs(1-L)+abs(L)< 2 epsilon$, then $1< 2 epsilon = 1$. Which leads us to contradiction as $1<1$. Therefore, such limit does not exist.
+]
+
+#exercise[$limits(lim)_(x->0) x cot(1/x)$]
+
+#proof[
+  For limit to make sense, there must be a $delta$ for which $f(x)$ is defined for all $x in (-delta,0) union (0,delta)$. However, we can clearly show that since $f(x)=x cot(1/x) = (x cos(1/x))/sin(1/x)$, then for $x=1/(2pi k), k in NN$ $f(x)$ is undefined. Therefore, there exist
+  $k$ large enough for which $abs(1/(pi k)) < delta$, hence $1/(2pi k) in (-delta,0) union (0,delta)$. It means that $f(x)$ is NOT defined for all $x in (-delta,0) union (0,delta)$ and therefore limit does not exist.
+]
+
+#exercise[$limits(lim)_(x->1) 1/(x^2-2x+1)$]
+
+#proof[Notice that $f(x)=1/(x^2-2x+1)=1/(x-1)^2$. Suppose that limit does exist and $limits(lim)_(x->1) 1/(x-1)^2 = L$.
+  Let $epsilon > 0$ and $epsilon + L > 0$. Now, by defintion of the limit, exists such real positive number $delta$ such that $0<abs(x-1)<delta ==> abs(1/(x-1)^2-L)<epsilon$.
+
+  Choose $x>1$ such that $x - 1 < min(delta, sqrt(1/(epsilon+L)))$. Therefore, $x-1 < delta$ and $x-1 < sqrt(1/(epsilon+L))$, hence $1/(x-1)^2 - L > epsilon$. If so, then
+  $0 < abs(x-1) < delta$, but $abs(1/(x-1)^2 - L) > epsilon$. Thus, it is contradictory and limit does not exist.
+]
