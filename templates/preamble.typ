@@ -27,3 +27,5 @@
 #let Image(m) = $op("Im")(m)$
 
 #let iff = sym.arrow.l.r.double.long
+
+#show math.equation: set math.equation(numbering: "(A)")
