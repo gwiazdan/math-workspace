@@ -423,3 +423,108 @@ Prove that the following limits do not exist.
 
   However, $f(limits(lim)_(x->0) g(x))=f(0)=0$. Therefore $limits(lim)_(x->0) f(g(x)) != f(limits(lim)_(x->0) g(x))$.
 ]
+
+#definition(number: 13.4, title: "Limits at Infinity")[
+  1. The statement $limits(lim)_(x->infinity) f(x) = L$ means that for any real $epsilon >0$, there is a number $N>0$ for which $x>N$ implies $abs(f(x)-L)<epsilon$.
+  2. The statement $limits(lim)_(x-> - infinity) f(x) = L$ means that for any $epsilon >0$, there is a number $N<0$ for which $x<N$ implies $abs(f(x)-L)<epsilon$.
+] <limits-at-infinity>
+
+Use @limits-at-infinity to prove the following results.
+
+#exercise[$limits(lim)_(x-> infinity) 1/x^n = 0$ if $n in NN$.]
+
+#proof[
+  Let $epsilon >0$ and $N = 1/epsilon^(1 slash n)$. Notice that if $x > 1/epsilon^(1 slash n)$, then $epsilon^(1/n) > 1/x$, so $1/x^n < epsilon$. Thus $abs(1/x^n - 0) < epsilon$ and by the definition of the limit $limits(lim)_(x->infinity) 1/x^n = 0$.
+]
+
+#exercise[$limits(lim)_(x->infinity) (3x+2)/(2x-1)=3/2$.]
+
+#proof[
+  Let $epsilon >0$ and $N=7/(4 epsilon) + 1/2$. If so, then if $x> 7/(4 epsilon) + 1/2$, then $4x-2> 7/epsilon$, so $epsilon > 7/(4x-2)$, hence $(3x+2)/(2x-1)-3/2 < epsilon$. This can be represented as $abs((3x+2)/(2x-1)-3/2)<epsilon$ which by @limits-at-infinity means that $limits(lim)_(x->infinity) (3x+2)/(2x-1) = 3/2$.
+]
+
+#exercise[
+  If $a in RR$, then $limits(lim)_(x->infinity) a = a$.
+]
+
+#proof[
+  Let $epsilon >0$ and $N in RR$ (e.g $N=0$), then $x>N$ implies trivially $abs(a-a)<epsilon$.
+]
+
+#exercise[If $limits(lim)_(x->infinity) f(x)$ exists, and $a in RR$, then $limits(lim)_(x->infinity) a f(x) = a limits(lim)_(x->infinity) f(x)$.]
+
+#proof[
+  Suppose that $limits(lim)_(x->infinity) f(x)$ exists. If $a=0$, then $limits(lim)_(x->infinity) 0 = 0$ by previous excercise. Thus, for the remainder of the proof we can assume $a!=0$.
+
+  Suppose that $limits(lim)_(x->infinity) f(x) = L$. We must show that $limits(lim)_(x->infinity) a f(x) = a L$. Let $epsilon >0$. Since $epsilon >0$ and $abs(a) !=0$, then $epsilon/abs(a) > 0$ as well. Now, notice that since the former limit exists, then there is such $N in RR$ for which $x>N ==> abs(f(x)-L)<epsilon/abs(a)$.
+
+  Multiplying both sides by $abs(a)$ yields $abs(a f(x)- a L) < epsilon$. Hence, for all $x>N$, $abs(a f(x)-a L)<epsilon$. We can conclude that $limits(lim)_(x->infinity) a f(x) = a L$.
+]
+
+#exercise[If both $limits(lim)_(x->infinity) f(x)$ and $limits(lim)_(x->infinity)g(x)$ exist, then $limits(lim)_(x->infinity) (f(x)+g(x))=limits(lim)_(x->infinity) f(x)+limits(lim)_(x->infinity) g(x)$.]
+
+#proof[
+  Let $limits(lim)_(x->infinity) f(x)= L$ and $limits(lim)_(x->infinity) g(x) = M$. We shall prove that $limits(lim)_(x->infinity) (f(x)+g(x))=L+M$.
+
+  Let $epsilon>0$. By @limits-at-infinity there are such $N',N'' in RR$ for which $x>N' ==> abs(f(x)-L)<epsilon/2$ and $x>N'' ==> abs(g(x)-M) <epsilon/2$.
+
+  Let $N=max{N',N''}$ and $x>N$. By triangle's inequality, $abs((f(x)+g(x))-(L+M))<=abs(f(x)-L)+abs(g(x)-M)<epsilon/2+epsilon/2 = epsilon$. Hence, for all $x>N$ it holds that $abs((f(x)+g(x))-(L+M))<epsilon$. Thus, we can conclude that $limits(lim)_(x->infinity) (f(x)+g(x))=L+M$.
+]
+
+#exercise[
+  If both $limits(lim)_(x->infinity) f(x)$ and $limits(lim)_(x->infinity) g(x)$ exist, then $limits(lim)_(x->infinity) f(x) g(x) = (limits(lim)_(x->infinity) f(x)) dot (limits(lim)_(x->infinity) g(x))$.
+]
+
+#proof[
+  Let $limits(lim)_(x->infinity) f(x) = L$ and $limits(lim)_(x->infinity) g(x) = M$. We shall show that $limits(lim)_(x->infinity) f(x) dot g(x) = L M$.
+
+  Let $epsilon>0$. By @limits-at-infinity there are such $N', N'' in RR$ for which $x>N' ==> abs(f(x)-L)<epsilon/(2 (1+abs(M)))$ and $x>N'' ==> abs(g(x)-M) <epsilon/(2abs(L))$. Let $N=max{N',N''}$. Notice that $abs(f(x) g(x) - L M) = abs(f(x) g(x) - L M - L g(x) + L g(x)) = abs(g(x)(f(x)-L) + L(g(x)-M))<= abs(L) abs(g(x)-M) + abs(g(x)) abs(f(x)-L)$.
+
+  Since $abs(g(x))=abs(g(x)-M + M)<= abs(g(x)-M) + abs(M)$, then if we choose $N''$ sufficiently large, so that $abs(g(x)-M)<1$, then $abs(g(x))<= 1 + abs(M)$. Hence
+  $
+    abs(f(x) g(x) - L M) <= abs(L) abs(g(x)-M) + (1+abs(M)) abs(f(x)-L) < abs(L) dot epsilon/(2 abs(L)) + (1+abs(M)) dot epsilon/(2(1+abs(M))) = epsilon/2 + epsilon/2 = epsilon
+  $
+  Since forall $epsilon >0$, there is such $N in RR$ for which, $x>N ==> abs(f(x) g(x) - L M)<epsilon$, then by @limits-at-infinity $limits(lim)_(x->infinity) f(x) g(x) = L M$.
+]
+
+#exercise[If both $limits(lim)_(x->infinity) f(x)$ and $limits(lim)_(x->infinity) g(x)$ exist, and $limits(lim)_(x->infinity) g(x) !=0$, then $limits(lim)_(x->infinity) f(x)/g(x) = (limits(lim)_(x->infinity)f(x))/(limits(lim)_(x->infinity)g(x))$.]
+
+#proof[
+  Let $limits(lim)_(x->infinity) f(x) = L$ and $limits(lim)_(x->infinity) g(x) = M$. We shall prove that $limits(lim)_(x->infinity) f(x) / g(x) = L/M$.
+
+  Suppose $epsilon>0$ and by @limits-at-infinity there are such $N', N''$ for which $x>N' ==> abs(f(x)-L) <abs(M)/4 epsilon$ and $x>N'' ==> abs(g(x)-M) <min{abs(M^2)/(4(1+(abs(L))) epsilon, abs(M)/2}$.
+
+  Now, let $N = max{N',N''}$ and observe that
+  #math.equation(
+    block: true,
+    numbering: "(A)",
+    $
+      abs(f(x)/g(x)-L/M) & = abs(M f(x)- L g(x))/abs(M g(x)) \
+                         & =abs(M f(x) - L g(x) - L M + L M)/abs(M g(x)) \
+                         & = abs(M(f(x)-L)-L(g(x)-M))/abs(M g(x)) \
+                         & <=1/abs(g(x)) dot abs(f(x)-L) + abs(L)/(M abs(g(x))) abs(g(x)-M)
+    $,
+  ) <ex-division-laws>
+
+  Since $abs(g(x))=abs(g(x)-M+M)>=abs(M)-abs(g(x)-M)$ and by @limits-at-infinity, we can notice that for some $N'' in RR$, $x>N'' ==> abs(g(x)-M)<abs(M)/2$. Thus, $abs(g(x))>abs(M)/2$, so $1/abs(g(x))<2/abs(M)$. Back to @ex-division-laws
+  $
+    abs(f(x)/g(x)-L/M) & <= 2/abs(M) dot abs(f(x)-L) + (2abs(L))/abs(M^2) abs(g(x)-M) \
+                       & < 2/abs(M) dot abs(M)/4 epsilon + (2 abs(L))/abs(M)^2 dot abs(M^2)/(4(1+abs(L))) epsilon \
+                       & = epsilon/2 + abs(L)/(1+abs(L)) epsilon/2< epsilon/2+epsilon/2= epsilon
+  $
+
+  Thus, for all $x>N$, $abs(f(x)/g(x)-L/M)<epsilon$, so by @limits-at-infinity, $limits(lim)_(x->infinity) f(x)/g(x) = L/M$.
+]
+
+#exercise[If $limits(lim)_(x->infinity) g(x) = L$ and $f$ is continuous at $x=L$, then $limits(lim)_(x->infinity) f(g(x))=f(limits(lim)_(x->infinity) g(x))$.]
+
+#proof[
+  Let $epsilon>0$. Since $f$ is continous in $L$, then $abs(y-L) < eta ==> abs(f(y)-f(L))<epsilon$. Now, by the defintion of the limit, there is such $N in RR$ for which $x>N ==> abs(g(x)-L)<eta$. Settings $y=g(x)$ yields $abs(f(g(x))-f(L))<epsilon$. Thus, by @limits-at-infinity $limits(lim)_(x->infinity) f(g(x)) = f(limits(lim)_(x->infinity) g(x))$.
+]
+
+#exercise[Prove that $limits(lim)_(x->infinity) sin(x)$ does not exist.]
+
+#proof[
+  Suppose limit exists and $limits(lim)_(x->infinity) sin(x) = L$. $x>N ==> abs(sin(x)-L) < epsilon$. Let $epsilon=1/2$.
+  Notice that both $a=pi k$, $b=pi/2+2pi l$ for $k,l in NN$ satisfy inequality $x>N$ if $k,l$ are large enough. Hence, $abs(sin(a)-L) = abs(L) <epsilon$ and $abs(sin(b)-L) = abs(1-L) <epsilon$. Thus $abs(L) + abs(1-L) <2 epsilon$ and by triangle's inequality $1=abs(L+(1-L))<=abs(L) + abs(1-L)$. Hence, $1<=abs(L)+abs(1-L)<1$, so $1<1$ which contradicts.
+]
