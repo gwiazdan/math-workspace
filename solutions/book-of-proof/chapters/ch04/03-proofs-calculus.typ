@@ -103,7 +103,7 @@ Prove that the following limits do not exist.
 
   Hence, by triangle inequality $abs((f(a)-L) - (f(b)-L)) <= abs(f(a) - L) + abs(f(b) - L)$. We shall use this fact, to show that $abs((f(a)-L)-(f(b)-L))=abs(f(a)-f(b))=abs(log_10(delta)-log_10(10) - log_10(delta) + log_10(1000))=abs(-1+3)=2$. We know also that $abs(f(a)-L) + abs(f(b)-L) < 2$.
 
-  Thus, $2<abs(f(a)-L)+abs(f(b)-L)<2$ and it contradictswith the definition of the limit. Therefore, limit does not exist.
+  Thus, $2<abs(f(a)-L)+abs(f(b)-L)<2$ and it contradicts with the definition of the limit. Therefore, limit does not exist.
 ]
 
 #exercise[$limits(lim)_(x->0) abs(x)/x$]
@@ -527,4 +527,151 @@ Use @limits-at-infinity to prove the following results.
 #proof[
   Suppose limit exists and $limits(lim)_(x->infinity) sin(x) = L$. $x>N ==> abs(sin(x)-L) < epsilon$. Let $epsilon=1/2$.
   Notice that both $a=pi k$, $b=pi/2+2pi l$ for $k,l in NN$ satisfy inequality $x>N$ if $k,l$ are large enough. Hence, $abs(sin(a)-L) = abs(L) <epsilon$ and $abs(sin(b)-L) = abs(1-L) <epsilon$. Thus $abs(L) + abs(1-L) <2 epsilon$ and by triangle's inequality $1=abs(L+(1-L))<=abs(L) + abs(1-L)$. Hence, $1<=abs(L)+abs(1-L)<1$, so $1<1$ which contradicts.
+]
+
+=== Sequences
+
+#definition(number: 13.6, title: "Divergence to infinity")[
+  1. We say a sequence ${a_n}$ *diverges to* $infinity$ if $limits(lim)_(x->infinity) a_n = infinity$. This means that for any $L>0$, there is a positive $N$ for which $n>N$ implies $a_n > L$.
+  2. We say a sequence ${a_n}$ *diverges to* $-infinity$ if $limits(lim)_(x->infinity) a_n = -infinity$. This means that for any $L<0$, there is a positive $N$ for which $n>N$ implies $a_n <L$.
+] <divergence-to-infinity>
+
+
+#exercise[Prove that ${2^n/n!}$ converges to $0$.]
+
+#proof[
+  Suppose $epsilon>0$. Choose an integer $N=max{3, ceil(2-log_2(epsilon))}$. Then if $n> N$ we have $abs(a_n-0)=abs(2^n/n!)=2^n/n!$. Notice that $2^n/n! = 2/1 dot 2/2 dot 2/3 dot 2/4 dot dots dot 2/n< 4/3 dot (1/2)^(n-3) <2 dot 1/2^(n-3)=1/2^(n-2) < 1/2^(N-2)=epsilon$. Hence, $limits(lim)_(n->infinity) 2^n/n! = 0$.
+]
+
+#exercise[Prove that ${5+2/n^2}$ converges to $5$.]
+
+#proof[
+  Suppose $epsilon>0$. Choose an integer $N=ceil(sqrt(2/epsilon))$. Then if $n>N$ we have $abs(a_n-5)=abs(5+2/n^2-5)=2/n^2$. Notice that $2/n^2<2/N^2<=epsilon$. Thus, $limits(lim)_(n->infinity) 5+2/n^2 = 5$.
+]
+
+#exercise[Prove that ${(2n^2+1)/(3n-1)}$ diverges to $infinity$.]
+
+#proof[
+  Let $L>0$. Choose an integer $N=max{ceil(3/2 L),1}$. Notice that if $n>N$, then:
+  $
+    a_n = (2n^2+1)/(3n-1) > (2n^2)/(3n) = 2/3 n
+  $
+  Since $2/3 n > 2/3 N >= L$, then $a_n > L$. Therefore, by @divergence-to-infinity, $limits(lim)_(n->infinity) a_n = infinity$.
+]
+
+#exercise[Prove that ${1-1/2^n}$ converges to $1$.]
+
+#proof[
+  Suppose $epsilon>0$. Choose an integer $N=max{0,ceil(-log_2(epsilon))}$. Then:
+  $
+    n > N ==> 2^n > 2^N ==> 2^(-n) < 2^(-N) <= epsilon
+  $
+  Furthermore $abs(a_n -1) = abs(1-1/2^n -1) = abs(2^(-n))=2^(-n)$. Thus $abs(a_n-1) < epsilon$ which means that $limits(lim)_(n->infinity) a_n = 1$.
+]
+
+#exercise[Prove that ${(2n+1)/(3n-1)}$ converges to $2/3$.]
+
+#proof[
+  Let $epsilon>0$. Choose integer $N=max{ceil(5/(6 epsilon)),1}$. Notice that if $n>N$, then:
+  $
+    a_n = (2n+1)/(3n-1)=2/3 dot (3n-1+5/2)/(3n-1) = 2/3 + (5/3)/(3n-1)
+  $
+  Thus, $a_n - 2/3 = 5/(3(3n-1))<5/(6n)<5/(6N)<=epsilon$. Hence $abs(a_n - 2/3) < epsilon$, which means that $limits(lim)_(n->infinity) a_n = 2/3$.
+]
+
+#exercise[Prove that ${(5n^2+n+1)/(4n^2+2)}$ converges to $5/4$.]
+
+#proof[
+  Let $epsilon>0$. Choose integer $N = max{ceil(1/4epsilon), 2}$. Notice that if $n>N$, then:
+  $
+    a_n = (5n^2+n+1)/(4n^2+2) = 5/4 dot (4n^2+ 2 + 4/5 n - 6/5)/(4n^2+2) = 5/4 + (n-3/2)/(4n^2+2) < 5/4 + n/(4n^2) = 5/4 + 1/(4n)
+  $
+  Now, $a_n - 5/4 < 1/(4n) < 1/(4N) <= epsilon$ and $a_n-5/4>0$, hence $abs(a_n - 5/4) < epsilon$. This leads us to the conclusion that $limits(lim)_(n->infinity) a_n = 5/4$.
+]
+
+#exercise[Prove that if a sequence diverges to infinity, then it diverges.]
+
+#proof[
+  Suppose that ${a_n}$ simultaneously converges to $L$ and disverges to $infinity$. If so, then for $epsilon=1$, there is such integer $N_1$ for which $n>N_1$ implies $abs(a_n-L) < epsilon$. Furthermore, for every $M>0$, there is such integer $N_2$ for which $n>N_2$ implies $a_n>M$. Let $M=L+1$. Notice, that for $N=max{N_1,N_2}$ both $abs(a_n-L)<epsilon$ and $a_n > L+1$ yields. Hence, $a_n-L > 1$, so $abs(a_n-L)>1$ and $abs(a_n-L)<1$, which contradicts.
+
+  On the other hand, let ${a_n}$ converge to $L$ as well as disverge to $-infinity$. Let $epsilon=1$. Analogously, there is such integer $N_1$ for which $n>N_1$ implies $abs(a_n-L)<epsilon$ and such integer $N_2$ for which $n>N_2$ implies $a_n<M$. Set $M=L-1$ and choose $N=max{N_1,N_2}$ so that for $n>N$ both $abs(a_n-L) < epsilon$ and $a_n<L-1$ holds. Then, $a_n-L< -1$ implies that $abs(a_n-L) > 1$ which contradicts with $abs(a_n-L) < 1 = epsilon$.
+]
+
+#exercise[Prove that the constant sequence $c,c,c,c,dots$ converges to $c$, for any $c in RR$.]
+
+#proof[
+  Let $c in RR$ and $epsilon>0$. Choose an integer $N>0$. Notice that for $n>N$, $abs(a_n-c) = abs(c-c) = 0 <epsilon$. This means that $n>N => abs(a_n-c) < epsilon$ trivially and hence by definition of the limit, $limits(lim)_(x->infinity) a_n = c$.
+]
+
+#exercise[Prove that if ${a_n}$ converges to $L$, and $c in RR$, then the sequence ${c a_n}$ converges to $c L$.]
+
+#proof[
+  Let ${a_n}$ converge to $L$. We shall show that ${c a_n}$ converges to $c L$.
+
+  Suppose $c=0$. If so, then sequence ${c a_n}$ is a constant sequence $0,0,0,dots$ which converges to $0$. Hence ${0 a_n}$ converges to $0 dot L = 0$ and the claim holds. For the remainder of the proof we shall establish that $c!=0$.
+
+  Let $epsilon>0$. There exist an integer $N >0$ for which every $n>N$ implies $abs(a_n - L)<epsilon/abs(c)$.
+
+  If so, then expression $abs(a_n - L) < epsilon / abs(c)$ can be rewritten as $abs(c a_n - c L) < epsilon$. This leads us to the conclusion that for every $epsilon>0$, there is an positive integer $N$ for which $abs(c a_n - c L) <epsilon$. Thus, ${c a_n}$ converges to $c L$.
+]
+
+#exercise[Prove that if ${a_n}$ converges to $L$ and ${b_n}$ converges to $M$, then the sequence ${a_n+b_n}$ converges to $L+M$.]
+
+#proof[
+  Let $epsilon>0$. There exist integers $N', N'' >0$ for which every $n>max{N',N''}$ implies both $abs(a_n-L) <epsilon/2$ and $abs(b_n-M)<epsilon/2$. Notice that
+  $
+    abs((a_n+b_n) - (L+M)) <= abs(a_n - L) + abs(b_n-M) < epsilon/2+epsilon/2 = epsilon
+  $
+  Hence, for every $epsilon>0$, there is such $N=max{N',N''}$ for which $n>N$ implies $abs((a_n + b_n) - (L+M)) <epsilon$, which means that ${a_n + b_n}$ converges to $L+M$.
+]
+
+#exercise[Prove that if ${a_n}$ converges to $L$ and ${b_n}$ converges to $M$, then the sequence ${a_n b_n}$ converges to $L M$.]
+
+#proof[
+  Let $epsilon>0$. There exist integers $N', N'', N'''>0$ for which $n>N'$ implies $abs(a_n-L)<epsilon/(2(1+abs(M))$, $n>N''$ implies $abs(b_n-M)<epsilon/(2(1+abs(L)))$and $n>N'''$ implies $abs(b_n-M)<1$. Notice that if $N=max{N',N'', N'''}$, then for all $n>N$
+  $
+    abs(a_n b_n - L M) = abs(a_n b_n - L b_n + L b_n - L M) = abs(b_n (a_n - L) + L(b_n - M)) <= abs(b_n) abs(a_n-L) + abs(L) abs(b_n-M)
+  $
+  Since $abs(b_n) = abs(b_n - M + M) <= abs(b_n-M) + abs(M)<=1+abs(M)$, then
+  $
+    abs(a_n b_n - L M) & <= (1+abs(M))abs(a_n-L) + abs(L)abs(b_n-M) \
+                       & < (1+abs(M)) dot epsilon/(2(1+abs(M))) + abs(L) dot epsilon/(2(1+abs(L))) \
+                       & = epsilon/2 + abs(L)/(1+abs(L)) epsilon/2 \
+                       & < epsilon
+  $
+  Thus, $abs(a_n b_n - L M) < epsilon$, so ${a_n b_n}$ converges to $L M$.
+]
+
+#exercise[Prove that if ${a_n}$ converges to $L$ and ${b_n}$ converges to $M!=0$, then the sequence ${a_n/b_n}$ converges to $L/M$.]
+
+#proof[
+  Suppose $epsilon>0$. There exist integers $N_1, N_2, N_3$ such that $n>N_1$ implies $abs(a_n-L)<epsilon/2 abs(M)/2$, $n>N_2$ implies that $abs(b_n-M)<abs(M)/2$ and $n>N_3$ implies that $abs(b_n-M)< epsilon/2 abs(M)^2/(2(abs(L)+1))$. Notice that if $N = max{N_1,N_2,N_3}$ and $n>N$, then
+  $
+    abs(a_n/b_n - L/M) & = abs((M a_n - L b_n)/(M b_n)) \
+                       & = abs((M a_n - L M + L M - L b_n)/(M b_n)) \
+                       & <= abs(a_n -L)/abs(b_n) + (abs(L)abs(b_n-M))/(abs(M)abs(b_n))
+  $
+  Since $abs(b_n) = abs(b_n - M + M) >=abs(M) - abs(b_n - M)>=abs(M)-abs(M)/2$, so $1/abs(b_n)<=2/abs(M)$, then
+  $
+    abs(a_n/b_n - L/M) & <= (2 abs(a_n -L))/abs(M) + (2 abs(L)abs(b_n-M))/abs(M)^2 \
+    & < 2/abs(M) dot abs(M)/2 dot epsilon/2 + (2 abs(L))/abs(M)^2 dot abs(M)^2/(2(1+abs(L))) dot epsilon/2 \
+    & = epsilon/2 + abs(L)/(1+abs(L)) epsilon/2 < epsilon/2+epsilon/2 = epsilon
+  $
+  Thus, $abs(a_n/b_n - L/M) < epsilon$, so ${a_n/b_n}$ converges to $L/M$.
+]
+
+#exercise[
+  For any sequence ${a_n}$, there is a corresponding sequence ${abs(a_n)}$. Prove that if ${abs(a_n)}$ converges to $0$, then ${a_n}$ converges to $0$. Give an example of sequence ${a_n}$ for which ${abs(a_n)}$ converges to a  number $L!=0$, but ${a_n}$ disverges.
+]
+
+#proof[
+  Let $epsilon>0$ and since ${abs(a_n)}$ converges to $0$, then there exists an integer $N$ for which $n>N$ implies $abs(abs(a_n)-0)<epsilon$. Thus, $abs(abs(a_n))=abs(a_n)=abs(a_n-0)<epsilon$ which leads us to the conclusion that ${a_n}$ converges to $0$ as well.
+
+  However, for example ${abs((-1)^n)}$ converges to $1$, but ${(-1)^n}$ diverges.
+]
+
+#exercise[Suppose that ${a_n}, {b_n}$ and ${c_n}$ are sequences for which $a_n <= b_n <= c_n$ for all sufficiently large $n$. Prove that if ${a_n}$ and ${c_n}$ converges to $L$, then ${b_n}$ converges to $L$.]
+
+#proof[
+  Let $epsilon>0$ and ${a_n}, {c_n}$ converge to $L$. If so, then there exists such integers $N_0, N_1, N_2$ for which $n>N_0 ==> a_n <= b_n <= c_n, quad n>N_1 ==> abs(a_n-L)<epsilon$ and $n>N_2 ==> abs(c_n-L)<epsilon$. If so, then fix $N=max{N_0,N_1,N_2}$ and notice that $a_n<=b_n <=c_n$ can be represented as $a_n-L<=b_n-L<=c_n-L$ while $-epsilon<a_n-L$ and $c_n-L<epsilon$. Hence, $-epsilon<b_n-L<epsilon$, so $abs(b_n-L)<epsilon$. This means that ${b_n}$ converges to $L$ as well.
 ]
