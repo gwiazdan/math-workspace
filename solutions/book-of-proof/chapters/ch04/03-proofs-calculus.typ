@@ -531,6 +531,14 @@ Use @limits-at-infinity to prove the following results.
 
 === Sequences
 
+#definition(number: 13.5)[
+  A sequence ${a_n}$ *converges* to a number $L in RR$ provided that for any $epsilon>0$ there is an $N in NN$ for which $n > N$ imples $abs(a_n - L) < epsilon$.
+
+  If ${a_n}$ converges to $L$, we denote this state affairs as $limits(lim)_(n->infinity) a_n = L$.
+
+  If ${a_n}$ does not converge to any number $L$, then we say it *diverges*.
+] <sequences-convergence>
+
 #definition(number: 13.6, title: "Divergence to infinity")[
   1. We say a sequence ${a_n}$ *diverges to* $infinity$ if $limits(lim)_(x->infinity) a_n = infinity$. This means that for any $L>0$, there is a positive $N$ for which $n>N$ implies $a_n > L$.
   2. We say a sequence ${a_n}$ *diverges to* $-infinity$ if $limits(lim)_(x->infinity) a_n = -infinity$. This means that for any $L<0$, there is a positive $N$ for which $n>N$ implies $a_n <L$.
@@ -675,3 +683,117 @@ Use @limits-at-infinity to prove the following results.
 #proof[
   Let $epsilon>0$ and ${a_n}, {c_n}$ converge to $L$. If so, then there exists such integers $N_0, N_1, N_2$ for which $n>N_0 ==> a_n <= b_n <= c_n, quad n>N_1 ==> abs(a_n-L)<epsilon$ and $n>N_2 ==> abs(c_n-L)<epsilon$. If so, then fix $N=max{N_0,N_1,N_2}$ and notice that $a_n<=b_n <=c_n$ can be represented as $a_n-L<=b_n-L<=c_n-L$ while $-epsilon<a_n-L$ and $c_n-L<epsilon$. Hence, $-epsilon<b_n-L<epsilon$, so $abs(b_n-L)<epsilon$. This means that ${b_n}$ converges to $L$ as well.
 ]
+
+=== Series
+
+#definition(number: 13.7)[
+  A series $sum^infinity_(k=1) a_k$ *converges* to a real number $S$ if its sequence of partial sums ${s_n}$ converges to $S$. In this case we say $sum^infinity_(k=1) a_k = S$.
+
+  We say $sum^infinity_(k=1) a_k$ *diverges* if the sequence ${s_n}$ diverges. In this case $sum^infinity_(k=1) a_k$ does not make sense as a sum does not sum to a finite number.
+] <series-convergence>
+
+#theorem(number: 13.11)[If $sum^infinity_(k=1) a_k$ converges, then the sequence ${a_n}$ converges to $0$.]
+
+#proof[
+  Suppose $sum^infinity_(k=1) a_k$ converges, and say $sum^infinity_(k=1) a_k = S$. From this, @series-convergence, the sequence of partial sums ${s_n}$ converges to $S$. From this, @sequences-convergence says that for any $epsilon>0$ there is an $N in NN$ for which $n>N$ implies $abs(s_n - S) < epsilon$. Thus also $n-1>N$ implies $abs(s_(n-1) - S) <epsilon$.
+
+  We need to show that ${a_n}$ converges $0$. So take $epsilon>0$. By the previous paragraph, there is an $N' in NN$ for which $n>N'$ implies $abs(s_n - S) <epsilon/2$ and $abs(s_(n-1) - S) <epsilon/2$. Notice that $a_n = s_n - s_(n-1)$ for any $n>2$. So if $n>N'$ we have
+  $
+    abs(a_n-0)=abs(s_n-s_(n-1)) = abs((s_n-S)-(s_(n-1)-S)) <= abs(s_n - S) + abs(s_(n-1) -S)< epsilon/2+epsilon/2 = epsilon
+  $
+  Therefore, by @sequences-convergence, the sequence ${a_n}$ converges to $0$.
+]
+
+The contrapositive of this theorem is a convenient test for divergence:
+
+#corollary(number: 13.1, title: "Divergence test")[
+  If ${a_n}$ diverges, or if it converges to a non-zero number, then $sum^infinity_(k=1) a_k$ diverges.
+] <divergence-test>
+
+#exercise[
+  A _geometric series_ is one having the form $a+a r+ a r^2 + a r^3 + dots$, where $a,r in RR$. Prove that if $abs(r)<1$, then the series converges to $a/(1-r)$. Also if $a!=0$ and $abs(r)>=1$, then the series diverges.
+]
+
+#proof[
+  Firstly, we shall prove that $s_n=sum^n_(i=1) a r^(i-1) = a(1-r^n)/(1-r)$. We will do this with mathematical induction.
+
+  1. *Base step ($n=1$):* $s_1 = sum^1_(i=1) a r^0 = a$ and $a(1-r^n)/(1-r) = a (1-r)/(1-r) = a$. $s_1 = a(1-r^1)/(1-r)$. True.
+
+  2. *Inductive step:* Let $n>=1$ and $s_n = a(1-r^n/(1-r)$. Observe that
+  $
+    s_(n+1) & = s_n + a r^n \
+            & = a(1-r^n)/(1-r) + a r^n \
+            & = a((1-r^n)/(1-r) + ((1-r)r^n)/(1-r)) \
+            & = a(1-r^n+r^n-r^(n+1))/(1-r) \
+            & = a(1-r^(n+1))/(1-r)
+  $
+  Thus $P(k+1)$ holds and $s_n = a (1-r^n)/(1-r)$.
+
+
+  *Case 1.* $abs(r)<1$:
+  Notice, that since $limits(lim)_(n->infinity) r^n = 0$, then ${r^n}$ converges to $0$. By limit laws,
+  $limits(lim)_(n->infinity) a/(1-r) dot (1-r^n) = a/(1-r)$, so ${(a(1-r^n))/(1-r)}$ converge to $a/(1-r)$.
+
+  *Case 2.* $abs(r) >= 1$ and $a != 0$:
+  Observe that since $abs(r) >= 1$, the sequence $(a r^(n-1))$ does not converge to $0$. By @divergence-test, the geometric series diverges.
+]
+
+#exercise[Prove the _comparison test_: Suppose $sum^infinity_(k=1) a_k$ and $sum^infinity_(k=1) b_k$ are series. If $0<=a_k<=b_k$ for each $k$, and $sum^infinity_(k=1) b_k$ converges, then $sum^infinity_(k=1) a_k$ converges. Also, if $0<=b_k<=a_k$ for each $k$, and $sum^infinity_(k=1) b_k$ diverges, then $sum^infinity_(k=1) a_k$ diverges.
+]
+
+#proof[
+  Let $sum^n_(k=1) a_k = s_n$ and $sum^n_(k=1) b_k =s'_n$, so $sum^infinity_(k=1) a_k = limits(lim)_(n->infinity) s_n$ and $sum^infinity_(k=1) b_k = limits(lim)_(n->infinity) s'_n$.
+
+  1. Let $0<=a_n <=b_n$ for all $n in NN$ and ${s'_n}$ converge to $S$. Since both $a_n$ and $b_n$ are non-negative for all $n in NN$, then both sequences are non-decreasing. Thus $0<=s_n<=s'_n<=S$. #v(0.3em) Since ${s_n}$ is bounded above by $S$, then *by the Completeness Axiom of* $RR$, the set ${s_n: n in NN}$ has a least upper bound $S^* = sup{s_n: n in NN}<=S$. Notice that for $epsilon>0$ there is such integer $N$ for which $s_N >= S^* - epsilon$. #v(0.3em) If so, then for every $n>N$, $s_n >= s_N > S^* -epsilon$. Thus, $s_n-S^*>= -epsilon$. Furthermore, since $s_n<=S^*$, so $s_n<S^*+epsilon$, and $s_n-S^*<epsilon$. We have shown that $abs(s_n - S^*) < epsilon$, hence ${s_n}$ converges to $S^*$.
+
+  2. On the other hand, let $0<=b_n<=a_n$ for all $n in NN$ and ${s'_n}$ diverge to $infinity$. Analogously, every sequence is non-decreasing and $0<=s'_n<=s_n$. #v(0.3em) Since ${s'_n}$ diverges, then for every $L>0$, there is an integer $N$ for which $n>N ==> s'_n > L$. Now, we know that $s_n >= s'_n$, so $s_n > L$ as well. Therefore, ${s_n}$ diverges to infinity.
+]
+
+#exercise[Prove the _limit comparison test_: Suppose $sum^infinity_(k=1) a_k$ and $sum^infinity_(k=1) b_k$ are series for which $a_k,b_k >0$ for each $k$. If $limits(lim)_(k->infinity) (a_k/b_k) = 0$ and $sum^infinity_(k=1) b_k$ converges, then $sum^infinity_(k=1) a_k$ converges.
+]
+#proof[
+  We established that $a_n,b_n > 0$ for all $n>0$ which means that both sequences are positive, so the series are increasing. Let $sum^n_(k=1) a_k = s_n$ and $sum^n_(k=1) b_k = t_n$. Since ${t_n}$ converges, then ${b_n}$ converges to $0$.
+
+  Now, there is such integer $N_1$ for which $n>N_1 ==> abs(b_n)<epsilon$. Notice also that for every $epsilon>0$ Choose an integer $N_2$ for which $n>N_2 ==> abs(a_n/b_n)<1$, so $abs(a_n)<abs(b_n)$.
+
+  Fix $N=max{N_1,N_2}$. Notice that for $n>N$, $abs(a_n)<abs(b_n)<epsilon$. Hence $abs(a_n)<epsilon$ and ${a_n}$ converges to $0$.
+
+  Notice that $s_n$ can be represented as $sum^N_(k=1)a_k + sum^n_(k=N+1) a_k$. Since $N$ is an integer, then $sum^N_(k=1)$ returns a real value. To prove that series converge, we shall show that the remainder converges. We have shown that for $n>N$, $abs(a_n)<abs(b_n)$, so $a_n<b_n$, and since both series are increasing, then if ${t_n}$ converges to $S$, then $sum^n_(k=N+1) a_k<=S - underbrace(sum^N_(k=1) b_k, "finite as well")$.
+
+  Therefore, we have shown that $sum^n_(k=N+1)$ has an upper bound, so it does have a supremum. By previous exercise, ${s_n}$ converges as well.
+]
+
+#exercise[Prove the _absolute convergence test_: Let $sum^infinity_(k=1) a_k$ be a series. If $sum^infinity_(k=1) abs(a_k)$ converges, then $sum^infinity_(k=1) a_k$ converges.
+]
+
+#proof[
+  Let $sum^n_(k=1) a_k = s_n$ and $sum^infinity_(k=1) abs(a_k) = S$. We shall notice that $sum^n_(k=1) a_k + abs(a_k)$ is non-decreasing. Moreover, $0<=a_n+abs(a_n)<=2 abs(a_n)$. Thus by the comparison test, since ${sum^n_(k=1) abs(a_k)}$ converges, so ${sum^n_(k=1) 2 abs(a_k) }$, and hence ${sum^n_(k=1) a_k+abs(a_k)}$ converges as well. Since there is $L in RR$ such that $sum^infinity_(k=1) a_n + abs(a_n) = L$, then $sum^infinity_(k=1) a_n = L-sum^infinity_(k=1) abs(a_n) = L-S$. Therefore, the series ${sum^n_(k=1) a_n}$ converges too.
+]
+
+#exercise[Prove the _ratio test_: Given a series $sum^infinity_(k=1) a_k$ with each $a_k$ positive, if $limits(lim)_(k->infinity) a_(k+1)/a_k = L < 1$, then $sum^infinity_(k=1) a_k$ converges. Also, if $L>1$, then $sum^infinity_(k=1) a_k$ diverges.]
+
+#proof[
+  Let $s_n = sum_(k=1)^n a_k$. Since $a_n > 0$ for all $n in NN$, the sequence of partial sums $(s_n)$ is strictly increasing.
+
+  Suppose $lim_(n->infinity) a_(n+1)/a_n = L$. We divide the proof into two cases:
+
+  1. *Case $L < 1$:*
+    Choose a real number $r$ such that $L < r < 1$, and set $epsilon = r - L > 0$.
+    By definition of limit, there exists $N in NN$ such that for all $n >= N$:
+    $ abs(a_(n+1)/a_n - L) < epsilon ==> a_(n+1)/a_n < L + epsilon = r $
+    Thus, for any $k >= 1$, by induction we have $a_(N+k) < a_N r^k$.
+    For $n > N$, the partial sum can be bounded as follows:
+    $
+      s_n = s_N + sum_(k=1)^(n-N) a_(N+k) < s_N + a_N sum_(k=1)^(n-N) r^k < s_N + a_N sum_(k=1)^(infinity) r^k = s_N + a_N r/(1 - r)
+    $
+    Since $s_N + a_N r/(1 - r)$ is a fixed constant independent of $n$, $(s_n)$ is bounded above. Being monotonic and bounded, $(s_n)$ converges, so $sum_(k=1)^(infinity) a_k$ converges.
+
+  2. *Case $L > 1$:*
+    Choose $r$ such that $1 < r < L$, and set $epsilon = L - r > 0$.
+    There exists $N in NN$ such that for all $n >= N$:
+    $ abs(a_(n+1)/a_n - L) < epsilon ==> a_(n+1)/a_n > L - epsilon = r > 1 $
+    By induction, for any $k >= 1$, $a_(N+k) > a_N r^k$.
+    Since $r > 1$, we have $lim_(k->infinity) a_N r^k = infinity$, which implies $lim_(n->infinity) a_n != 0$.
+    By the term test for divergence, $sum_(k=1)^(infinity) a_k$ diverges.
+]
+
