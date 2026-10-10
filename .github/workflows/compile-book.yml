@@ -1,0 +1,59 @@
+name: Compile Book Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 'Path to the main Typst file (e.g., book.typ)'
+        required: true
+        default: 'main.typ'
+        type: string
+      tag:
+        description: 'Release tag (e.g., v1.0 or final-edition)'
+        required: true
+        default: 'v1.0'
+        type: string
+      title:
+        description: 'Release title'
+        required: true
+        default: 'Book Solutions'
+        type: string
+      description:
+        description: 'Release description'
+        required: true
+        default: 'Compiled PDF of the worked mathematical exercises.'
+        type: string
+      output_filename:
+        description: 'Output PDF filename (e.g., book-of-proof.pdf)'
+        required: true
+        default: 'book.pdf'
+        type: string
+
+jobs:
+  release-pdf:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Tinymist
+        run: |
+          curl --proto '=https' --tlsv1.2 -LsSf https://github.com/Myriad-Dreamin/tinymist/releases/latest/download/tinymist-installer.sh | sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Compile Typst to PDF using Tinymist
+        run: |
+          tinymist compile "${{ inputs.file }}" "${{ inputs.output_filename }}"
+
+      - name: Create Release and Upload PDF
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag }}
+          name: ${{ inputs.title }}
+          files: ${{ inputs.output_filename }}
+          body: ${{ inputs.description }}
+          draft: false
+          prerelease: false
