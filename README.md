@@ -3,14 +3,14 @@
 > A collection of worked mathematical exercises from selected textbooks, written in Typst and published as PDF documents.
 
 [![Typst](https://img.shields.io/badge/typeset%20with-Typst-239DAD.svg)](https://typst.app/)
-[![PDF](https://img.shields.io/badge/output-PDF-B30B00.svg)](https://github.com/NorbertGwiazda/math-workspace/releases)
+[![PDF](https://img.shields.io/badge/output-PDF-B30B00.svg)](https://github.com/gwiazdan/math-workspace/releases)
 [![Status](https://img.shields.io/badge/status-in%20development-orange.svg)](#status-projektu)
 
 ---
 
 ## 📌 Project Overview
 
-This repository contains worked mathematical exercises from individual textbooks. Each book is maintained as a separate Typst document that can be compiled to PDF and published in the [Releases](https://github.com/NorbertGwiazda/math-workspace/releases) section.
+This repository contains worked mathematical exercises from individual textbooks. Each book is maintained as a separate Typst document that can be compiled to PDF and published in the [Releases](https://github.com/gwiazdan/math-workspace/releases) section.
 
 The repository currently includes:
 
@@ -57,7 +57,7 @@ typst watch solutions/book-of-proof/main.typ book-of-proof.pdf
 
 ## 📦 Publishing
 
-The completed PDF files are published as release assets in the [Releases](https://github.com/NorbertGwiazda/math-workspace/releases) section.
+The completed PDF files are published as release assets in the [Releases](https://github.com/gwiazdan/math-workspace/releases) section.
 
 ## 📖 Contents
 
