@@ -14,3 +14,5 @@
 #pagebreak()
 #include "chapters/ch02.typ"
 #pagebreak()
+#include "chapters/ch03.typ"
+#pagebreak()

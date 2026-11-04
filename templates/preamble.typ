@@ -28,4 +28,6 @@
 
 #let iff = sym.arrow.l.r.double.long
 
+#let span = $op("span")$
+
 #show math.equation: set math.equation(numbering: "(A)")
