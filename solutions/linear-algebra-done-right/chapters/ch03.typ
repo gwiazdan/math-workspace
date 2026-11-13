@@ -666,7 +666,7 @@
   Suppose that $S in ker phi$. We can easily show that $phi (S T) = phi(S) phi(T) = 0 phi(T) = 0$ and $phi (T S) = phi (T) phi (S) = 0$, hence both $S T, T S in ker phi$. Therefore,
   $ker phi$ is a two-sided ideal of $cal(L)(V)$. In the previous exercise, we have shown that two-sided ideals of $cal(L)(V)$ are only $cal(L)(V)$ and ${0}$.
 
-  Let $ker phi = {0}$. Notice that multiplication is commutative on $FF$, hence $phi (S T) = phi(S) phi(T) = phi(T) phi(S) = phi (T S)$. Therefore, $phi(S T) = phi (T S) => phi(S T - T S) = 0$, yielding $S T - T S =0 $ and hence $S T = T S$. However, it is well-known fact that linear map product is not commutative, thus $ker phi$ cannot be equal ${0}$.
+  Let $ker phi = {0}$. Notice that multiplication is commutative on $FF$, hence $phi (S T) = phi(S) phi(T) = phi(T) phi(S) = phi (T S)$. Therefore, $phi(S T) = phi (T S) => phi(S T - T S) = 0$, yielding $S T - T S =0$ and hence $S T = T S$. However, it is well-known fact that linear map product is not commutative, thus $ker phi$ cannot be equal ${0}$.
 
   The only remaining possibility is to assume that $ker phi = cal(L)(V)$. If so, then obviously $dim im phi = 0$, implying that $im phi = {0}$ and hence $phi = 0$.
 ]
@@ -696,6 +696,379 @@
 
   1. Suppose $im T = W$. Let $w in W_CC$, so $w = w_1 + i w_2$ for some $w_1, w_2 in W$. Since $im T = W$, there exist $u, v in V$ such that $T u = w_1$ and $T v = w_2$. Thus, $T_CC (u + i v) = T u + i T v = w_1 + i w_2 = w$. Hence, $im T_CC = W_CC$.
   2. Suppose $im T_CC = W_CC$. Let $w in W$. Since $W subset.eq W_CC$, we have $w in im T_CC$. Therefore, there exist $u, v in V$ such that $T_CC (u + i v) = w$, which means:
-     $ T u + i T v = w + i 0 $
-     Equating the real parts yields $T u = w$. Thus, for every $w in W$, there exists $u in V$ such that $T u = w$, which implies $im T = W$.
+    $ T u + i T v = w + i 0 $
+    Equating the real parts yields $T u = w$. Thus, for every $w in W$, there exists $u in V$ such that $T u = w$, which implies $im T = W$.
+]
+
+== Matrices
+
+#definition(title: $"matrix," A_(j,k)$)[
+  Suppose $m$ and $n$ are nonnegative integers. An $m$-by-$n$ _matrix_ $A$ is a rectangular array of elements of $FF$ with $m$ rows and $n$ columns:
+  $
+    A = mat(A_(1,1), dots, A_(1,n); dots.v, , dots.v; A_(m,1), dots, A_(m,n))"."
+  $
+  The notation $A_(j,k)$ denotes the entry in row $j$, column $k$ of $A$.
+]
+
+#definition(title: $"matrix of a linear map," cal(M)(T)$)[
+  Suppose $T in cal(L)(V,W)$ and $v_1,dots,v_n$ is a basis of $V$ and $w_1,dots,w_m$ is a basis of $W$. The _matrix_ of $T$ with respect to these bases is the $m$-by-$n$ matrix $cal(M)(T)$ whose entries $A_(j,k)$ are defined by
+  $
+    T v_k A_(1,k) w_1 + dots + A_(m,k) w_m"."
+  $
+  If the bases $v_1,dots,v_n$ and $w_1,dots,w_m$ are not clear from the context, then the notation $cal(M)(T,(v_1,dots,v_n),(w_1,dots,w_m))$ is used.
+]
+
+#definition(title: "matrix addition")[
+  The _sum of two matrices of the same size_ is the matrix obtained by adding corresponding entries in the matrices:
+  $
+    mat(A_(1,1), dots, A_(1,n); dots.v, , dots.v; A_(m,1), dots, A_(m,n)) + mat(C_(1,1), dots, C_(1,n); dots.v, , dots.v; C_(m,1), dots, C_(m,n)) &= mat(A_(1,1)+C_(1,1), dots, A_(1,n)+C_(1,n); dots.v, , dots.v; A_(m,1)+C_(m,1), dots, A_(m,n)+C(m,n))"."
+  $
+]
+
+#corollary[
+  Suppose $S,T in cal(L)(V,W)$. Then $cal(M)(S+T) = cal(M)(S)+cal(M)(T)$.
+]
+
+#definition(title: "scalar multiplication of a matrix")[
+  The product of a scalar and a matrix is the matrix obtained by multiplying each entry in the matrix by the scalar:
+  $
+    lambda mat(A_(1,1), dots, A_(1,n); dots.v, , dots.v; A_(m,1), dots, A_(m,n)) = mat(lambda A_(1,1), dots, lambda A_(1,n); dots.v, , dots.v; lambda A_(m,1), dots, lambda A_(m,n))
+  $
+]
+
+#corollary[
+  Suppose $lambda in FF$ and $T in cal(L)(V,W)$. Then $cal(M)(lambda T) = lambda cal(M)(T)$.
+]
+
+#definition(title: $FF^(m,n)$)[
+  For $m$ and $n$ positive integers, the set of all $m$-by-$n$ matrices with entries in $FF$ is denoted by $FF^(m,n)$.
+  $ dim FF^(m,n) = m n $
+]
+
+#definition(title: "matrix multiplication")[
+  Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. The $A B$ is defined to be the $m$-by-$p$ matrix whose entry in row $j$, column $k$, is given by the equation
+  $
+    (A B)_(j,k) = sum^n_(r=1) A_(j,r) B_(r,k)"."
+  $
+  Thus the entry in row $j$, column $k$, of $A B$ is computed by taking row $j$ of $A$ and column $k$ of $B$, multiplying together corresponding entries, and then summing.
+]
+
+#corollary[
+  If $T in cal(L)(U,V)$ and $S in cal(L)(V,W)$, then $cal(M)(S T) = cal(M) (S) cal(M) (T)$.
+]
+#pagebreak()
+#definition(title: "column rank, row rank")[
+  Suppose $A$ is an $m$-by-$n$ matrix with entries in $FF$.
+  - The _column rank_ of $A$ is the dimension of the span of the columns of $A$ in $FF^(m,1)$.
+  - The _row rank_ of $A$ is the dimension of the span of the roes of $A$ in $FF^(1,n)$.
+]
+
+#definition(title: $"transpose," A^top$)[
+  The _transpose_ of a matrix $A$, denoted by $A^top$, is the matrix obtained from $A$ by interchanging rows and columns. Specifically, if $A$ is an $m$-by-$n$ matrix, then $A^top$ is the $n$-by-$m$ matrix whose entries are given by the equation
+  $
+    (A^top)_(k,j) = A_(j,k)"."
+  $
+]
+
+#definition(title: "column-row factorization")[
+  Supose $A$ is an $m$-by-$c$ matrix $C$ and a $c$-by-$n$ matrix $R$, both with entries in $FF$, such that $A = C R$.
+]
+#proof[
+  Each column of $A$ is an $m$-by-$1$ matrix. The list $A_(dot,1),dots, A_(dots,n)$ of columns of $A$ can be reduced to a basis of the psan of the columns of $A$. This basis has length $c$, by the definition of the column rank. The $c$ columns in this basis can be put together to form an $m$-by-$c$ matrix $C$.
+
+  If $k in {1,dots,n}$, then column $k$ of $A$ is a linear combination of the columns of $C$. Make the coefficients of this linear combination into column $k$ of a $c$-by-$n$ matrix that we call $R$. Then $A= C R$.
+]
+
+#theorem(title: "column rannk equals row rank")[
+  Suppose $A in FF^(m,n)$. Then the column rank of $A$ equals the row rank of $A$.
+]
+#proof[
+  Let $c$ denote the column rank of $A$. Let $A = C R$ be the collumn-row factorization of $A$, where $C$ is an $m$-by-$c$ matrix and $R$ is $c$-by-$n$ matrix. Then, every row of $A$ is a linear combination of the rows of $R$. Because $R$ has $c$ rows, this implies that the row rank of $A$ is less than or equal to the column rank $c$ of $A$.
+
+  To prove the inequality in the other direction, apply the result in the previous paragraph to $A^top$, getting
+  $
+    "column rank of" A & = "row rank of" A^top \
+                       & <= "column rank of" A^top \
+                       & = "row rank of" A"."
+  $
+  Thus the column rank of $A$ equals the row rank of $A$.
+]
+#pagebreak()
+#exercise[Suppose $T in cal(L)(V,W)$. Show that with respect to each choice of bases of $V$ and $W$, the matrix of $T$ has at least $dim im T$ nonzero entries.]
+
+#proof[
+  Let $v_1, dots, v_n$ be a basis of $V$ and $w_1, dots, w_m$ be a basis of $W$.
+  By definition, the columns of the matrix $cal(M)(T)$ represent the coordinates of the vectors $T v_k$ (for $k=1,dots,n$) in the basis $w_1,dots,w_m$.
+
+  Since the image $im T$ is spanned by the set ${T v_1,dots, T v_n}$, we can extract a subset of these vectors that forms a basis of $im T$, which cardinality is precisely $dim im T$.
+
+  Therefore, there must exist at least $dim im T$ non-zero distinct vectors among $T v_1, dots, T v_n$, implying that at least $dim im T$ entries are non-zero.
+]
+
+#exercise[
+  Suppose $V$ and $W$ are finite-dimensional and $T in cal(L)(V,W)$. Prove that $dim im T = 1$ if and only if there exist a basis of $V$ and a basis of $W$ such that with respect to the bases, all entries of $cal(M)(T)$ equal $1$.
+]
+
+#proof[
+  1. Suppose that there exist a basis of $V$ and a basis of $W$ such that with respect to these bases, all entries of $cal(M)(T)$ equal $1$. Clearly, every column is represented by the same vector $mat(1; dots.v; 1)$. Therefore, clearly $im T$ is spanned by single vector $mat(1, dots, 1)$, implying that $dim im T = 1$.
+  2. Suppose $dim im T = 1$. Let the dimension of $V$ be $n$ and the dimension of $W$ be $m$. By the Rank-Nullity Theorem, the dimension of $ker T$ equals $n - 1$. Let ${u_1, dots, u_(n-1)}$ be a basis of $ker T$. #v(0.1em) Take any vector $v in V$ such that $v in.not ker T$, which means $T v$ is non-zero vector belonging to $im T$. Let ${y_1,dots,y_m}$ be any basis of $W$. We can write $T v = c_1 y_1 + dots + c_m y_m$. We can construct a new basis of $W$ as: $ {w_1 = T v-y_2 - dots - y_m, quad w_2 = y_2, quad dots, quad w_m = y_m} $ Next, we define a basis of $V$ as: ${v,v+u_1,dots,v+u_(m-1)}$. It follows for every basis element that: $ T(v) = T v = w_1 + dots + w_m $ $ T(v+u_k)=T v + T u_k = T v = w_1+dots+w_n $ for every index $k in {1,dots,m-1}$. #v(0.1em) Expressed in coordinate vectors with respect to these bases, each column of $cal(M)(T)$ consists entirely of $1$s, because each basis vector of $V$ is mapped to $T v = w_1 + dots + w_m$ (whose coordinates in the basis of $W$ are all $1$).
+]
+
+#exercise[
+  Suppose $v_1,dots,v_n$ is a basis of $V$ and $w_1,dots,w_m$ is a basis of $W$.
+  - Show that if $S,T in cal(L)(V,W)$, then $cal(M)(S+T) = cal(M)(S) + cal(M)(T)$.
+  - Show that if $lambda in FF$ and $T in cal(L)(V,W)$, then $cal(M)(lambda T) = lambda cal(M)(T)$.
+]
+
+#proof[
+  1. Let $S,T in cal(L)(V,W)$. Define $cal(M)(S), cal(M)(T)$ with respect to the selected bases. By definition, the columns of the matrix $cal(M)(S)$ represent the coordinates of the vectors $S v_k$ for $k in {1,dots,n}$. Analogously, the columns of $cal(M)(T)$ are representend by the vectors $T v_k$. Since $S v_k = A_(1,k) w_1 + dots+ A_(m,k) w_m$ and $T v_k = B_(1,k) w_1 + dots + B_(m,k) w_m$, then $(S+T) v_k = S v_k + T v_k = (A_(1,k)+B_(1,k)) w_1 + dots + (A_(m,k)+B_(m,k)) w_m$. The columns of $cal(M)(S+T)$ are represented by the coordinates of $(S+T) v_k$, implying that $cal(M)(S+T)=cal(M)(S)+cal(M)(T)$. #v(0.1em)
+  2. Suppose $lambda in FF$ and $T in cal(L)(V,W)$. Similarly like in the previous proof, the coordinates of the vectors $T v_k$ are by definition the columns of the matrix $cal(M)(T)$, while the coordinates of the vectors $(lambda T) v_k$ are the columns of the matrix $cal(M)(lambda T)$. If $T v_k = A_(1,k) w_1 + dots + A_(m,k) w_m$, then $(lambda T) v_k = lambda A_(1,k) w_1 + dots +lambda A_(m,k) w_m$, implying that $cal(M)(lambda T) = lambda cal(M)(T)$.
+]
+
+#exercise[
+  Suppose that $D in cal(L)(cal(P)_3 (RR), cal(P)_2 (RR))$ is the differentiation map defined by $D p = p'$. Find a basis of $cal(P)_3 (RR)$ and a basis of $cal(P)_2 (RR)$ such that the matrix of $D$ with respect to theses bases is
+  $
+    mat(1, 0, 0, 0; 0, 1, 0, 0; 0, 0, 1, 0)"."
+  $
+]
+
+#solution[
+  Let $x^3, x^2, x, 1$ be a basis of $cal(P)_3 (RR)$ and $3 x^2, 2x, 1$ a basis of $cal(P)_2 (RR)$.
+
+  Notice that
+  - $D x^3 = 1 dot 3x^2 + 0 dot 2x + 0 dot 1$,
+  - $D x^2 = 0 dot 3x^2 + 1 dot 2x + 0 dot 1$,
+  - $D x = 0 dot 3x^2 + 0 dot 2x + 1 dot 1$,
+  - $D (1) = 0 dot 3x^2 + 0 dot 2x + 0 dot 1$.
+
+  Therefore with respect to these bases, the matrix of $D$ is precisely the given matrix.
+]
+
+#exercise[
+  Suppose $V$ and $W$ are finite-dimensional and $T in cal(L)(V,W)$. Prove that there exist a basis of $V$ and a basis of $W$ such that with respect to these bases, all entries of $cal(M)(T)$ are $0$ except that the entries in row $k$, column $k$ equal $1$ if $1<=k<= dim im T$.
+]
+
+#proof[
+  We define a basis of $ker T$ as ${u_1, dots, u_m}$ and extend it to a basis of $V$ as: ${v_1, dots, v_n, u_1, dots, u_m}$. Since $v_1, dots, v_n$ complement $ker T$, the set of their images ${T v_1, dots, T v_n}$ forms a basis of $im T$. We then extend it to a basis of $W$ as: ${T v_1, dots, T v_n, w_1, dots, w_l}$.
+
+  Now we examine the action of $T$ on each basis element of $V$:
+  - For every element $v_i$, its image is $T(v_i)$, which is the $i$-th basis vector of $W$. Thus, its coordinate vector has a $1$ in the $i$-th position and $0$ everywhere else.
+  - For every element of $ker T$, we have $T(u_j) = 0$. In terms of the codomain basis, all its coordinates are $0$.
+
+  Hence, with respect to these bases, the matrix of $T$ is precisely the given matrix.
+]
+
+#exercise[
+  Suppose $v_1, dots, v_m$ is a basis of $V$ and $W$ is finite-dimensional. Suppose $T in cal(L)(V,W)$. Prove that there exists a basis of $w_1, dots, w_n$ of $W$ such that all entries in the first column of $cal(M)(T)$ are $0$ except for possibly a $1$ in the first row, first column.
+]
+
+#proof[
+  We shall examine two cases:
+  1. Suppose $v_1 in ker T$. Since $W$ is finite-dimensional, let $w_1, dots, w_n$ be any basis of $W$. Because $T v_1 = 0 = 0 w_1 + dots + 0 w_n$, every entry in the first column of $cal(M)(T)$ with respect to the bases $v_1, dots, v_m$ and $w_1, dots, w_n$ is $0$.
+  2. Suppose $v_1 in.not ker T$. Define $w_1 = T v_1$. Since $w_1 != 0$, the list $w_1$ is linearly independent in $W$ and can therefore be extended to a basis $w_1, dots, w_n$ of $W$. Because $ T v_1 = 1 w_1 + 0 w_2 + dots + 0 w_n, $ the entry in the first row and first column of $cal(M)(T)$ is $1$, and all other entries in the first column are $0$.
+]
+#exercise[Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Prove that $ (A B)_(j,dot) = A_(j,dot) B $ for each $1<=j<=m$. In other words, show that row $j$ of $A B$ equals (row $j$ of $A$) times $B$.]
+
+#proof[
+  We shall begin with establishing that for any $m$-by-$k$ matrix $M$, $(M_(j,dot))_(1,k) = M_(j,k)$. Clearly, it is trivial since $ M_(j,dot) = mat(M_(j,1), dots, M_(j,k)) $
+
+  We can easily establish that since $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix, then $A B$ is $m$-by-$p$ matrix. From this we can derive that both $(A B)_(j,dot)$ and $A_(j,dot) B$ are $1$-by-$p$ matrices.
+
+  By the definition of matrix multiplication, for each $1 <= k <= p$ we have
+  $
+    (A B)_(j,k) = sum^n_(i=1) A_(j,i) B_(1,k)"."
+  $
+  Hence,
+  $
+    ((A B)_(j,dot))_(1,k) & = (A B)_(j,k) = sum_(i=1)^n A_(j,i) B_(i,k) \
+                          & = sum_(i=1)^n (A_(j,dot))_(1,i) B_(i,k) = (A_(j,dot) B)_(1,k)
+  $
+  Since $(A B)_(j,dot)$ and $A_(j,dot) B$ have the same size ($1$-by-$p$) and equal entries in every column $k$, we conclude that $(A B)_(j,dot) = A_(j,dot) B$.
+]
+
+#exercise[
+  Suppose $a = mat(a_1, dots, a_n)$ is a $1$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Prove that
+  $
+    a B = a_1 B_(1,dot) + dots + a_n B_(n,dot)"."
+  $
+  In other words, show that $a B$ is a linear combination of the rows of $B$, with the scalars that multiply the rows coming from $a$.
+]
+
+#proof[
+  Since $a$ is a $1$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix, then $a B$ is a $1$-by-$p$. The definition of matrix multiplication states that for each $1 <= k <= p$ we have
+  $
+    (a B)_(1,k) = sum^n_(i=1) a_i B_(i,k)
+  $
+  From this we can derive that $B_(i,k) = (B_(i,dot))_(1,k)$, so
+  $
+    (a B)_(1,k) & = sum^n_(i=1) a_i (B_(i,dot))_(1,k) \
+                & = (sum^n_(i=1) a_i B_(i,dot))_(1,k)
+  $
+  Lastly, as the above is true for every $1 <= k <= p$, then we can conclude that $a B = sum^n_(i=1) a_i B_(i,dot)$.
+]
+
+#exercise[
+  Give an example of $2$-by-$2$ matrices $A$ and $B$ such that $A B != B A$.
+]
+
+#solution[
+  Let $ A = mat(1, 2; 2, 1) quad B = mat(-1, -2; 2, 1) $
+
+  It follows that $ A B = mat(3, 0; 0, -3) quad B A = mat(-5, -4; 4, 5) $
+
+  Therefore, $A B != B A$.
+]
+
+#exercise[
+  Prove that the distributive property holds for matrix addition and matrix multiplication. In other words suppose $A,B,C,D,E$ and $F$ are matrices whose sizes are such that $A(B+C)$ and $(D+E)F$ make sense. Explain why $A B + A C$ and $D F + E F$ both make sense and prove that
+  $
+    A(B+C) = A B + A C quad "and" quad (D+E) F = D F + E F"."
+  $
+]
+
+#proof[
+  Suppose $A(B+C)$ makes sense. For $B+C$ to be defined, $B$ and $C$ must have the same sizes, say $n$-by-$p$. For the product $A(B+C)$ to be defined, $A$ must have $n$ columns; suppose $A$ is $m$-by-$n$. Then both products $A B$ and $A C$ are defined and have size $m$-by-$p$, so $A B + A C$ also makes sense and has size $m$-by-$p$.
+  Analogously, if $(D+E)F$ makes sense, then $D$ and $E$ have the same size, say $m$-by-$n$, and $F$ has $n$ rows, say size $n$-by-$p$. Hence $D F$ and $E F$ are both defined of size $m$-by-$p$, so $D F + E F$ makes sense as well and has the same size.
+
+  For $j,k$ such that $1<=j<=m$ and $1<=k<=p$, it follows that
+  $
+    (A(B+C))_(j,k) & = sum^n_(i=1) A_(j,i) (B+C)_(i,k) \
+                   & = sum^n_(i=1) A_(j,i) (B_(i,k) + C_(i,k))
+  $
+  By distributive property of the field:
+  $
+    (A(B+C))_(j,k) & = sum^n_(i=1) A_(j,i) B_(i,k) + A_(j,i) C_(i,k) \
+                   & = sum^n_(i=1) A_(j,i) B_(i,k) + sum^n_(i=1) A_(j,i) C_(i,k) \
+                   & = (A B)_(j,k) + (A C)_(j,k) \
+                   & = (A B + A C)_(j,k)
+  $
+  Hence, $A (B+C) = A B + A C$. We can also show that
+  $
+    ((D+E)F)_(j,k) & = sum^n_(i=1) (D+E)_(j,i) F_(i,k) \
+                   & = sum^n_(i=1) (D_(j,i) + E_(j,i)) F_(i,k) \
+                   & = sum^n_(i=1) D_(j,i) F_(i,k) + E_(j,i) F_(i,k) \
+                   & = sum^n_(i=1) D_(j,i) F_(i,k) + sum^n_(i=1) E_(j,i) F_(i,k) \
+                   & = (D F)_(j,k) + (E F)_(j,k) \
+                   & = (D F + E F)_(j,k)
+  $
+  Therefore, $(D+E)F = D F + E F$.
+]
+
+#exercise[
+  Prove that the matrix multiplication is associative. In other words, suppose $A,B$ and $C$ are matrices whose sizes are such that $(A B) C$ makes sense. Explain why $A (B C)$ makes sense and prove that
+  $
+    (A B) C = A (B C)"."
+  $
+]
+
+#proof[
+  Suppose that $(A B) C$ make sense. We can also define $A$ to be $p$-by-$n$ matrix. For product $A B$ to be defined, $B$ must have $n$ rows; suppose $B$ is $n$-by-$m$. Consequently, $A B$ is $p$-by-$m$ matrix, and for $(A B) C$ to be defined, $C$ must have $m$ rows. Let $C$ be an $m$-by-$l$ matrix.
+
+  Now, we shall examine whether $A (B C)$ makes sense. Since $B$ is $n$-by-$m$ and $C$ is $m$-by-$l$, then $B C$ can be defined and it is $n$-by-$l$ matrix. Lastly, $A (B C)$ also makes sense and it is $p$-by-$l$ matrix.
+
+  Let $r,s in NN$ such that $1<=r<=p$ and $1<=s<=l$. We can easily show that
+  $
+    ((A B) C)_(r,s) & = sum^m_(i=1) (A B)_(r,i) C_(i, s) \
+                    & = sum^m_(i=1) sum^n_(j=1) (A_(r,j) B_(j,i)) C_(i,s) \
+                    & = sum^n_(j=1) A_(r,j) sum^m_(i=1) (B_(j,i) C_(i,s)) \
+                    & = sum^n_(j=1) A_(r,j) (B C)_(j,s) \
+                    & = (A (B C))_(r,s)
+  $
+  Therefore, $(A B) C = A (B C)$.
+]
+
+#exercise[
+  Suppose $A$ is an $n$-by-$n$ matrix and $1<=j, k<=n$. Show that the entry row $j$, column $k$, of $A^3$ is
+  $
+    sum^n_(p=1) sum^n_(r=1) A_(j,p) A_(p,r) A_(r,k)"."
+  $
+]
+
+#proof[
+  We can easily show that
+  $
+    (A^3)_(j,k) & = (A^2 A)_(j,k) \
+                & = sum^n_(r=1) (A^2)_(j,r) A_(r,k) \
+                & = sum^n_(r=1) (sum^n_(p=1) A_(j,p) A_(p,r) ) A_(r,k) \
+                & = sum^n_(p=1) sum^n_(r=1) A_(j,p) A_(p,r) A_(r,k)
+  $
+]
+
+#exercise[
+  Suppose $m$ and $n$ are positive integers. Prove that function $A mapsto A^T$ is a linear map from $FF^(m,n)$ to $FF^(n,m)$.
+]
+
+#proof[
+  Let $A$ be an $m$-by-$n$ matrix, so that $1<=j<=m$ and $1<=k<=n$. Transposition is defined in such way that $(A^T)_(k,j)=A_(j,k)$ and if $A in FF^(m,n)$, then $A^T in FF^(n,m)$.
+
+  Firstly, take $A,B in FF^(m,n)$ and notice that
+  $
+    ((A+B)^T)_(k,j) & = (A+B)_(j,k) \
+                    & = A_(j,k) + B_(j,k) \
+                    & = (A^T)_(k,j) + (B^T)_(k,j)
+  $
+  Thus $(A+B)^T = A^T+B^T$, hence transposition is additive.
+
+  Furthermore, take $lambda in FF$ and $A in FF^(m,n)$. Clearly we can see that
+  $
+    ((lambda A)^T)_(k,j) & = (lambda A)_(j,k) \
+                         & = lambda A_(j,k) \
+                         & = lambda (A^T)_(k,j) \
+                         & = (lambda A^T)_(k,j)
+  $
+  Therefore, $(lambda A)^T = lambda A^T$ amd transposition is homogeneous.
+
+  Transposition maps from $FF^(m,n)$ to $FF^(n,m)$ and is both additive and homogeneous, so it is a linear map from $FF^(m,n)$ to $FF^(n,m)$.
+]
+
+#exercise[
+  Prove that if $A$ is an $m$-by-$n$ matrix and $C$ is an $n$-by-$p$ matrix, then
+  $
+    (A C)^T = C^T A^T "."
+  $
+]
+
+#proof[
+  Since $A in FF^(m,n)$ and $C in FF^(n,p)$, then product $A C$ is well-defined and lies in $FF^(m,p)$.
+  Let $1<=j<=m$ and $1<=k<=p$. By the definitions of transposition and matrix multiplication, we have
+  $
+    ((A C)^T )_(k,j) & = (A C)_(j,k) \
+                     & = sum^n_(i=1) A_(j,i) C_(i,k) \
+                     & = sum^n_(i=1) (A^T)_(i,j) (C^T)_(k,i) \
+                     & = sum^n_(i=1) (C^T)_(k,i) (A^T)_(i,j) \
+                     & = (C^T A^T)_(k,j)
+  $
+  Since $(A C)^T$ and $C^T A^T$ have the same size and agree on every entry, $(A C)^T = C^T A^T$.
+]
+
+#exercise[
+  Suppose $A$ is an $m$-by-$n$ matrix with $A!=0$. Prove that the rank of $A$ is $1$ if and only if there exist $(c_1,dots,c_m) in FF^m$ and $(d_1,dots,d_n) in FF^n$ such that $A_(j,k) = c_j d_k$ for every $j=1,dots,m$ and every $k=1,dots,n$.
+]
+
+#proof[
+  1. Suppose $rank A = 1$. This means that column space of $A$ has dimension $1$, so it admits a basis conisting of a single nonzero vector $c=(c_1,dots,c_m) in FF^m$. Each of the $n$ columns of $A$ is a scalar multiple of $c$; denote the scalar for column $k$ by $d_k in FF$, setting $d=(d_1,dots,d_n)$. Consequently, for every $j= 1,dots,m$ and $k=1,dots,n$: $ A_(j,k) = c_j d_k $
+  2. Suppose there exist $c in FF^m$ and $d in FF^n$ for which $A_(j,k) = c_j d_k$ holds for every $j=1,dots,m$ and $k=1,dots,n$. Define matrices $U in FF^(m,1)$ and $V in FF^(1,n)$ such that $U_(j,1) = c_j$ and $V_(1,k) = d_k$. Then for all $j$ and $k$, $ (U V)_(j,k) = sum_(i=1)^1 U_(j,i) V_(i,k) = U_(j,1) V_(1,k) = c_j d_k = A_(j,k) $ so $A = U V$. Because every column of $A$ is $d_k$ times the single column of $U$, the columns space of $A$ is spanned by one vector, which implies $rank A = 1$.
+]
+
+#exercise[
+  Suppose $T in cal(L)(V)$, and $u_1,dots,u_n$ and $v_1,dots,v_n$ are bases of $V$. Prove that the following are equivalent.
+  - $T$ is injective.
+  - The columns of $cal(M)(T)$ are linearly indepedent in $FF^(n,1)$.
+  - The columns of $cal(M)(T)$ span $FF^(n,1)$.
+  - The rows of $cal(M)(T)$ span $FF^(1,n)$.
+  - The rows of $cal(M)(T)$ are linearly indepedent in $FF^(1,n)$.
+
+  Here $cal(M)(T)$ means $cal(M)(T, (u_1,dots,u_n),(v_1,dots,v_n))$.
+]
+
+#proof[
+  Let $A = cal(M)(T)$ and denote its columns by $A_(dot,1), dots, A_(dot,n) in FF^(n,1)$ and its rows by $A_(1,dot), dots, A_(n,dot) in FF^(1,n)$.
+
+  1. Suppose $sum^n_(j=1) a_j A_(dot,j) = 0$ for some $a_1, dots, a_n in FF$, so $sum^n_(j=1) a_j A_(i,j) = 0$ for every $1 <= i <= n$. Now, by definition of the matrix of a linear map, $ T (sum^n_(j=1) a_j u_j) = sum^n_(j=1) a_j T u_j = sum^n_(j=1) a_j sum^n_(i=1) A_(i,j) v_i = sum^n_(i=1) v_i sum^n_(j=1) a_j A_(i,j) = sum^n_(i=1) v_i dot 0 = 0. $ Since $T$ is injective, $ker T = {0}$, which yields $sum^n_(j=1) a_j u_j = 0$. Because $(u_1, dots, u_n)$ is linearly independent, $a_j = 0$ for every $1 <= j <= n$. Thus, columns $A_(dot,1), dots, A_(dot,n)$ are linearly independent.
+  2. The list $A_(dot,1), dots, A_(dot,n)$ is linearly independent of length $n$ and $dim FF^(n,1) = n$, hence it spans $FF^(n,1)$.
+  3. In the two previous steps we have shown that $rank A = n$. Because column rank equals row rank and $dim FF^(1,n) = n$, we can establish that the rows of $cal(M)(T)$ span $FF^(1,n)$.
+  4. The list $A_(1,dot), dots, A_(n,dot)$ is of length $n = dim FF^(1,n)$ and spans $FF^(1,n)$, so it is linearly independent.
+  5. Lastly, if the rows of $A$ are linearly independent, then $rank A = n$, so the columns of $A$ are linearly independent as well. Now, suppose $u = sum^n_(j=1) a_j u_j in ker T$. By definition of the matrix of a linear map, we know $ 0 = T(sum^n_(j=1) a_j u_j) = sum^n_(j=1) a_j T u_j = sum^n_(j=1) a_j sum^n_(i=1) A_(i,j) v_i = sum^n_(i=1) v_i sum^n_(j=1) a_j A_(i,j). $ Since $(v_1, dots, v_n)$ is linearly independent, $sum^n_(j=1) a_j A_(i,j) = 0$ for every $1 <= i <= n$, i.e., $sum^n_(j=1) a_j A_(dot,j) = 0$. Since the column vectors are linearly independent, $a_j = 0$ for every $1 <= j <= n$, so $u = 0$; thus $ker T = {0}$.
+
+    This completes the cycle of equivalences.
 ]

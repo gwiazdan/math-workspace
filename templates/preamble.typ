@@ -1,6 +1,8 @@
 #import "@preview/simple-plot:1.1.0": area-between, fill-area, plot
 #import "@preview/fletcher:0.5.8": diagram, edge, node
 #import "@preview/euler-math:0.1.0": *
+#import "@preview/physica:0.9.8": *
+#import "@preview/equate:0.3.3": equate
 
 // Choose the language
 #set text(lang: "en")
